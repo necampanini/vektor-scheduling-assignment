@@ -6,14 +6,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { CustomSerializer, effects, reducers } from './store';
+
 export const APP_ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'scheduling' }
-  , {
-    path: 'scheduling', loadChildren: () => import('../scheduling/scheduling.module')
-      .then(module => module.SchedulingModule)
+  { path: '', pathMatch: 'full', redirectTo: 'scheduling' },
+  {
+    path: 'scheduling',
+    loadChildren: () => import('../scheduling/scheduling.module').then(module => module.SchedulingModule)
   }
 ];
 
@@ -26,12 +28,16 @@ export const APP_ROUTES: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(APP_ROUTES),
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers, {}),
+    EffectsModule.forRoot(effects),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RouterStateSerializer, useClass: CustomSerializer
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

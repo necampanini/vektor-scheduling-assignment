@@ -1,21 +1,21 @@
-import { Employee } from '../../models/employee.model';
+import { Shift } from '../../models/shift.model';
 
-import * as fromEmployees from '../actions';
+import * as fromShifts from '../actions';
 import * as fromUtils from '../../../app/store/reducers/common-reducer.utils';
 
-export interface EmployeesState extends fromUtils.BaseEntityInterface<Employee> {
+export interface ShiftsState extends fromUtils.BaseEntityInterface<Shift> {
 }
 
-export const initialState: EmployeesState = {
+export const initialState: ShiftsState = {
   entities: {},
   loading: false,
   loaded: false,
 };
 
-export function reducer(state = initialState, action: fromEmployees.EmployeesAction): EmployeesState {
+export function reducer(state = initialState, action: fromShifts.ShiftsAction): ShiftsState {
   switch (action.type) {
     // load
-    case fromEmployees.LOAD_EMPLOYEES: {
+    case fromShifts.LOAD_SHIFTS: {
       return {
         ...state,
         loading: true,
@@ -23,7 +23,7 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
       };
     }
 
-    case fromEmployees.LOAD_EMPLOYEES_FAIL: {
+    case fromShifts.LOAD_SHIFTS_FAIL: {
       return {
         ...state,
         loading: false,
@@ -31,7 +31,7 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
       };
     }
 
-    case fromEmployees.LOAD_EMPLOYEES_SUCCESS: {
+    case fromShifts.LOAD_SHIFTS_SUCCESS: {
       const entities = fromUtils.mapToEntity(action.payload, state.entities);
 
       return {
@@ -43,8 +43,8 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
     }
 
     // create/update
-    case fromEmployees.CREATE_EMPLOYEE_SUCCESS:
-    case fromEmployees.UPDATE_EMPLOYEE_SUCCESS: {
+    case fromShifts.CREATE_SHIFT_SUCCESS:
+    case fromShifts.UPDATE_SHIFT_SUCCESS: {
       const employee = action.payload;
       const entities = {
         ...state.entities,
@@ -57,8 +57,7 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
       };
     }
 
-    case fromEmployees.REMOVE_EMPLOYEE_SUCCESS: {
-      // uses destructuring to specify an entity, spread the rest to '...entities'
+    case fromShifts.REMOVE_SHIFT_SUCCESS: {
       const { [action.payload.id]: removed, ...entities } = state.entities;
 
       return {
@@ -71,6 +70,6 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
   return state;
 }
 
-export const getEmployeesEntities = (state: EmployeesState) => state.entities;
-export const getEmployeesLoading = (state: EmployeesState) => state.loading;
-export const getEmployeesLoaded = (state: EmployeesState) => state.loaded;
+export const getShiftsEntities = (state: ShiftsState) => state.entities;
+export const getShiftsLoading = (state: ShiftsState) => state.loading;
+export const getShiftsLoaded = (state: ShiftsState) => state.loaded;
