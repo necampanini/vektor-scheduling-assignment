@@ -32,6 +32,7 @@ export const CREATE_EMPLOYEE_SUCCESS = '[Scheduling] Create Employee Success';
 
 export class CreateEmployee implements Action {
   readonly type = CREATE_EMPLOYEE;
+
   constructor(public payload: Employee) {
   }
 }
@@ -57,6 +58,7 @@ export const UPDATE_EMPLOYEE_SUCCESS = '[Scheduling] Update Employee Success';
 
 export class UpdateEmployee implements Action {
   readonly type = UPDATE_EMPLOYEE;
+
   constructor(public payload: Employee) {
   }
 }
@@ -82,6 +84,7 @@ export const REMOVE_EMPLOYEE_SUCCESS = '[Scheduling] Remove Employee Success';
 
 export class RemoveEmployee implements Action {
   readonly type = REMOVE_EMPLOYEE;
+
   constructor(public payload: Employee) {
   }
 }

@@ -17,7 +17,7 @@ describe('Employees Actions', () => {
 
     describe('LoadEmployeesFail', () => {
       it('should create an action', () => {
-        const payload = { message: 'load error '}
+        const payload = { message: 'load error ' };
         const action = new fromEmployees.LoadEmployeesFail(payload);
 
         expect({ ...action }).toEqual({
@@ -32,7 +32,7 @@ describe('Employees Actions', () => {
         const payload = [
           { id: '788642c4-22c3-4931-b8bb-793368e01ac5', firstName: 'JohnTest', lastName: 'TestJohn', employeeNumber: 2384 },
           { id: 'a55feadb-24ea-4c99-bae1-46341437d2b9', firstName: 'JimmyTest', lastName: 'TestJimmy', employeeNumber: 5823 },
-        ]
+        ];
         const action = new fromEmployees.LoadEmployeesSuccess(payload);
 
         expect({ ...action }).toEqual({
@@ -54,7 +54,7 @@ describe('Employees Actions', () => {
           firstName: 'Sire',
           lastName: 'Denathrius',
           employeeNumber: 28472
-        }
+        };
         const action = new fromEmployees.CreateEmployee(payload);
 
         expect({ ...action }).toEqual({
@@ -66,7 +66,7 @@ describe('Employees Actions', () => {
 
     describe('CreateEmployeeFail', () => {
       it('should create an action', () => {
-        const payload = { message: 'create error '}
+        const payload = { message: 'create error ' };
         const action = new fromEmployees.CreateEmployeeFail(payload);
 
         expect({ ...action }).toEqual({
@@ -83,7 +83,7 @@ describe('Employees Actions', () => {
           firstName: 'Sire',
           lastName: 'Denathrius',
           employeeNumber: 28472
-        }
+        };
         const action = new fromEmployees.CreateEmployeeSuccess(payload);
 
         expect({ ...action }).toEqual({
@@ -105,7 +105,7 @@ describe('Employees Actions', () => {
           firstName: 'Sire',
           lastName: 'Denny',
           employeeNumber: 28472
-        }
+        };
         const action = new fromEmployees.UpdateEmployee(payload);
 
         expect({ ...action }).toEqual({
@@ -117,7 +117,7 @@ describe('Employees Actions', () => {
 
     describe('UpdateEmployeeFail', () => {
       it('should create an action', () => {
-        const payload = { message: 'update error '}
+        const payload = { message: 'update error ' };
         const action = new fromEmployees.UpdateEmployeeFail(payload);
 
         expect({ ...action }).toEqual({
@@ -134,7 +134,7 @@ describe('Employees Actions', () => {
           firstName: 'Sire',
           lastName: 'Denny',
           employeeNumber: 28472
-        }
+        };
         const action = new fromEmployees.UpdateEmployeeSuccess(payload);
 
         expect({ ...action }).toEqual({
@@ -156,7 +156,7 @@ describe('Employees Actions', () => {
           firstName: 'Sire',
           lastName: 'Denny',
           employeeNumber: 28472
-        }
+        };
         const action = new fromEmployees.RemoveEmployee(payload);
 
         expect({ ...action }).toEqual({
@@ -168,7 +168,7 @@ describe('Employees Actions', () => {
 
     describe('RemoveEmployeeFail', () => {
       it('should create an action', () => {
-        const payload = { message: 'remove error '}
+        const payload = { message: 'remove error ' };
         const action = new fromEmployees.RemoveEmployeeFail(payload);
 
         expect({ ...action }).toEqual({
@@ -185,7 +185,7 @@ describe('Employees Actions', () => {
           firstName: 'Sire',
           lastName: 'Denny',
           employeeNumber: 28472
-        }
+        };
         const action = new fromEmployees.RemoveEmployeeSuccess(payload);
 
         expect({ ...action }).toEqual({

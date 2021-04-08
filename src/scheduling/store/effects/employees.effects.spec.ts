@@ -1,17 +1,15 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { Actions} from '@ngrx/effects';
+import { Actions } from '@ngrx/effects';
 
-import { hot, cold} from 'jasmine-marbles'
-import { Observable } from 'rxjs';
-import { empty, of} from 'rxjs';
+import { cold, hot } from 'jasmine-marbles';
+import { empty, Observable, of } from 'rxjs';
 
-import { EmployeesService } from '../../services/'
-import * as fromEffects from './employees.effect'
-import * as fromActions from '../actions/employees.action'
+import { EmployeesService } from '../../services/';
+import * as fromEffects from './employees.effect';
+import * as fromActions from '../actions/employees.action';
 import { Employee } from '../../models/employee.model';
-import { compose } from '@ngrx/store';
 
 export class TestActions extends Actions {
   constructor() {
@@ -56,17 +54,17 @@ describe('EmployeesEffects', () => {
         fromEffects.EmployeesEffects,
         { provide: Actions, useFactory: getActions }
       ]
-    })
+    });
 
-    actions$ = TestBed.get(Actions)
-    service = TestBed.get(EmployeesService)
+    actions$ = TestBed.get(Actions);
+    service = TestBed.get(EmployeesService);
     effects = TestBed.get(fromEffects.EmployeesEffects);
 
-    spyOn(service, 'getEmployees').and.returnValue(of(employees))
-    spyOn(service, 'createEmployee').and.returnValue(of(employees[0]))
-    spyOn(service, 'updateEmployee').and.returnValue(of(employees[0]))
-    spyOn(service, 'removeEmployee').and.returnValue(of(employees[0]))
-  })
+    spyOn(service, 'getEmployees').and.returnValue(of(employees));
+    spyOn(service, 'createEmployee').and.returnValue(of(employees[0]));
+    spyOn(service, 'updateEmployee').and.returnValue(of(employees[0]));
+    spyOn(service, 'removeEmployee').and.returnValue(of(employees[0]));
+  });
 
   describe('loadEmployees$', () => {
     it('should return a collection from LoadEmployeesSuccess', () => {
@@ -78,41 +76,41 @@ describe('EmployeesEffects', () => {
 
       expect(effects.loadEmployees$).toBeObservable(expected);
     });
-  })
+  });
 
   describe('createEmployee$', () => {
     it('should work', () => {
-      const action = new fromActions.CreateEmployee(employees[0])
-      const completion = new fromActions.CreateEmployeeSuccess(employees[0])
+      const action = new fromActions.CreateEmployee(employees[0]);
+      const completion = new fromActions.CreateEmployeeSuccess(employees[0]);
 
-      actions$.stream = hot('-a', {a: action })
-      const expected = cold('-c', { c: completion})
+      actions$.stream = hot('-a', { a: action });
+      const expected = cold('-c', { c: completion });
 
       expect(effects.createEmployee$).toBeObservable(expected);
-    })
+    });
   });
 
   describe('updateEmployee$', () => {
     it('should work', () => {
-      const action = new fromActions.UpdateEmployee(employees[0])
-      const completion = new fromActions.UpdateEmployeeSuccess(employees[0])
+      const action = new fromActions.UpdateEmployee(employees[0]);
+      const completion = new fromActions.UpdateEmployeeSuccess(employees[0]);
 
-      actions$.stream = hot('-a', { a: action })
-      const expected = cold('-c', { c: completion })
+      actions$.stream = hot('-a', { a: action });
+      const expected = cold('-c', { c: completion });
 
-      expect(effects.updateEmployee$).toBeObservable(expected)
-    })
-  })
+      expect(effects.updateEmployee$).toBeObservable(expected);
+    });
+  });
 
   describe('removeEmployee$', () => {
     it('should work', () => {
-      const action = new fromActions.RemoveEmployee(employees[0])
-      const completion = new fromActions.RemoveEmployeeSuccess(employees[0])
+      const action = new fromActions.RemoveEmployee(employees[0]);
+      const completion = new fromActions.RemoveEmployeeSuccess(employees[0]);
 
-      actions$.stream = hot('-a', { a: action })
-      const expected = cold('-c', { c: completion})
+      actions$.stream = hot('-a', { a: action });
+      const expected = cold('-c', { c: completion });
 
-      expect(effects.removeEmployee$).toBeObservable(expected)
-    })
-  })
-})
+      expect(effects.removeEmployee$).toBeObservable(expected);
+    });
+  });
+});

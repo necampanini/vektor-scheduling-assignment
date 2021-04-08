@@ -32,6 +32,7 @@ export const CREATE_SHIFT_SUCCESS = '[Scheduling] Create Shift Success';
 
 export class CreateShift implements Action {
   readonly type = CREATE_SHIFT;
+
   constructor(public payload: Shift) {
   }
 }
@@ -57,6 +58,7 @@ export const UPDATE_SHIFT_SUCCESS = '[Scheduling] Update Shift Success';
 
 export class UpdateShift implements Action {
   readonly type = UPDATE_SHIFT;
+
   constructor(public payload: Shift) {
   }
 }
@@ -82,6 +84,7 @@ export const REMOVE_SHIFT_SUCCESS = '[Scheduling] Remove Shift Success';
 
 export class RemoveShift implements Action {
   readonly type = REMOVE_SHIFT;
+
   constructor(public payload: Shift) {
   }
 }

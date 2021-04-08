@@ -10,6 +10,7 @@ import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { CustomSerializer, effects, reducers } from './store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'scheduling' },
@@ -20,9 +21,6 @@ export const APP_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -31,13 +29,11 @@ export const APP_ROUTES: Routes = [
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot(effects),
     StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    BrowserAnimationsModule
   ],
-  providers: [
-    {
-      provide: RouterStateSerializer, useClass: CustomSerializer
-    }
-  ],
+  declarations: [AppComponent],
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

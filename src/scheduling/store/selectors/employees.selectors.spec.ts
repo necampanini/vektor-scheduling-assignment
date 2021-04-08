@@ -12,7 +12,8 @@ import * as fromActions from '../actions/index';
 import * as fromSelectors from '../selectors/employees.selectors';
 import { RouterTestingModule } from '@angular/router/testing';
 
-class MockComponent {}
+class MockComponent {
+}
 
 describe('Employees Selectors', () => {
   let store: Store<fromReducers.SchedulingState>;
@@ -67,7 +68,7 @@ describe('Employees Selectors', () => {
 
     // TODO: .get is deprecated, find latest best practice for testing Store
     store = TestBed.get(Store);
-    router = TestBed.get(Router)
+    router = TestBed.get(Router);
   });
 
   describe('getEmployeeState', () => {
@@ -121,16 +122,16 @@ describe('Employees Selectors', () => {
       let routerState = {
         state: {
           url: 'employee/8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          params: {employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5'},
+          params: { employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5' },
           queryParams: {}
         }
-      }
+      };
 
       store
         .select(fromSelectors.getEmployeesEntities)
         .subscribe(value => {
           return (result = value);
-        })
+        });
 
       store.dispatch(new fromActions.LoadEmployeesSuccess(employees));
 
@@ -145,15 +146,15 @@ describe('Employees Selectors', () => {
 
       store
         .select(fromSelectors.getAllEmployees)
-        .subscribe(value => (result = value))
+        .subscribe(value => (result = value));
 
-      expect(result).toEqual([])
+      expect(result).toEqual([]);
 
-      store.dispatch(new fromActions.LoadEmployeesSuccess(employees))
+      store.dispatch(new fromActions.LoadEmployeesSuccess(employees));
 
-      expect(result).toEqual(employees)
-    })
-  })
+      expect(result).toEqual(employees);
+    });
+  });
 
   describe('getEmployeesLoaded', () => {
     it('should return the employees loaded state', () => {
@@ -161,15 +162,15 @@ describe('Employees Selectors', () => {
 
       store
         .select(fromSelectors.getEmployeesLoaded)
-        .subscribe(value => (result = value))
+        .subscribe(value => (result = value));
 
       expect(result).toEqual(false);
 
-      store.dispatch(new fromActions.LoadEmployeesSuccess([]))
+      store.dispatch(new fromActions.LoadEmployeesSuccess([]));
 
       expect(result).toEqual(true);
-    })
-  })
+    });
+  });
 
   describe('getEmployeesLoading', () => {
     it('should return the employees loading state', () => {
@@ -177,13 +178,13 @@ describe('Employees Selectors', () => {
 
       store
         .select(fromSelectors.getEmployeesLoading)
-        .subscribe(value => (result = value))
+        .subscribe(value => (result = value));
 
       expect(result).toEqual(false);
 
-      store.dispatch(new fromActions.LoadEmployees())
+      store.dispatch(new fromActions.LoadEmployees());
 
       expect(result).toEqual(true);
-    })
+    });
   });
 });

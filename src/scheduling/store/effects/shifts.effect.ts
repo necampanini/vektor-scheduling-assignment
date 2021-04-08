@@ -1,14 +1,12 @@
-import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import * as fromRoot from '../../../app/store'
-import * as shiftActions from '../actions/shifts.action'
-import * as fromServices from '../../services'
+import * as shiftActions from '../actions/shifts.action';
+import * as fromServices from '../../services';
 
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { of } from 'rxjs'
+import { of } from 'rxjs';
 
 @Injectable()
 export class ShiftsEffects {
@@ -21,7 +19,7 @@ export class ShiftsEffects {
           catchError((e) => of(new shiftActions.LoadShiftsFail(e)))
         );
       })
-    ))
+    ));
 
   createShift$ = createEffect(() => {
     return this.actions$.pipe(
@@ -31,10 +29,10 @@ export class ShiftsEffects {
         return this.shiftsService.createShift(shift).pipe(
           map(shift => new shiftActions.CreateShiftSuccess(shift)),
           catchError(error => of(new shiftActions.CreateShiftFail(error)))
-        )
+        );
       })
-    )
-  })
+    );
+  });
 
   updateShift$ = createEffect(() =>
     this.actions$.pipe(
@@ -46,7 +44,7 @@ export class ShiftsEffects {
           catchError(error => of(new shiftActions.UpdateShiftFail(error)))
         );
       })
-    ))
+    ));
 
   removeShift$ = createEffect(() =>
     this.actions$.pipe(
@@ -58,7 +56,7 @@ export class ShiftsEffects {
           catchError(error => of(new shiftActions.RemoveShiftFail(error)))
         );
       })
-    ))
+    ));
 
   constructor(private actions$: Actions,
               private shiftsService: fromServices.ShiftsService) {

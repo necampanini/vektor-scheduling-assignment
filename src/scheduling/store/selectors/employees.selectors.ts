@@ -9,7 +9,7 @@ import { Employee } from '../../models/employee.model';
 export const getEmployeeState = createSelector(
   fromFeature.getSchedulingState,
   (state: fromFeature.SchedulingState) => state.employees
-)
+);
 
 export const getEmployeesEntities = createSelector(
   getEmployeeState,
@@ -20,19 +20,19 @@ export const getSelectedEmployee = createSelector(
   getEmployeesEntities,
   fromRoot.getRouterState,
   (entities, router): Employee => router.state && entities[router.state.params.employeeId]
-)
+);
 
 export const getAllEmployees = createSelector(
   getEmployeesEntities,
   entities => Object.keys(entities).map(id => entities[id])
-)
+);
 
 export const getEmployeesLoaded = createSelector(
   getEmployeeState,
   fromEmployees.getEmployeesLoaded
-)
+);
 
 export const getEmployeesLoading = createSelector(
   getEmployeeState,
   fromEmployees.getEmployeesLoading
-)
+);

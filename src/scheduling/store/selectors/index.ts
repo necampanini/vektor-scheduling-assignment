@@ -1,1 +1,1 @@
-export * from './employees.selectors'
+export * from './employees.selectors';

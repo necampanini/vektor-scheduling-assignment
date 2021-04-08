@@ -205,8 +205,8 @@ describe('EmployeesReducer Selectors', () => {
       };
 
       const { initialState } = fromEmployees;
-      const previousState = {...initialState, entities }
-      const slice = fromEmployees.getEmployeeEntities(previousState)
+      const previousState = { ...initialState, entities };
+      const slice = fromEmployees.getEmployeeEntities(previousState);
 
       expect(slice).toEqual(entities);
     });
@@ -215,10 +215,10 @@ describe('EmployeesReducer Selectors', () => {
   describe('getEmployeesLoading', () => {
     it('should return .loading', () => {
       const { initialState } = fromEmployees;
-      const previousState = { ...initialState, loading: true}
+      const previousState = { ...initialState, loading: true };
       const slice = fromEmployees.getEmployeesLoading(previousState);
 
-      expect(slice).toEqual(true)
+      expect(slice).toEqual(true);
     });
   });
 
@@ -228,7 +228,7 @@ describe('EmployeesReducer Selectors', () => {
       const previousState = { ...initialState, loaded: true };
       const slice = fromEmployees.getEmployeesLoaded(previousState);
 
-      expect(slice).toEqual(true)
-    })
-  })
+      expect(slice).toEqual(true);
+    });
+  });
 });

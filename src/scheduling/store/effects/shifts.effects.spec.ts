@@ -1,17 +1,15 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { Actions} from '@ngrx/effects';
+import { Actions } from '@ngrx/effects';
 
-import { hot, cold} from 'jasmine-marbles'
-import { Observable } from 'rxjs';
-import { empty, of} from 'rxjs';
+import { cold, hot } from 'jasmine-marbles';
+import { empty, Observable, of } from 'rxjs';
 
-import { ShiftsService } from '../../services/'
-import * as fromEffects from './shifts.effect'
-import * as fromActions from '../actions/shifts.action'
+import { ShiftsService } from '../../services/';
+import * as fromEffects from './shifts.effect';
+import * as fromActions from '../actions/shifts.action';
 import { Shift } from '../../models/shift.model';
-import { compose } from '@ngrx/store';
 
 export class TestActions extends Actions {
   constructor() {
@@ -33,17 +31,17 @@ describe('ShiftsEffects', () => {
   let effects: fromEffects.ShiftsEffects;
 
   const shift1: Shift = {
-    "id": "c96627cd-be56-4a76-aa0b-d6f9e664d531",
-    "employeeId": "8ae2a281-1555-43fa-bb11-945b51cfdbb5",
-    "start": 1617828256683,
-    "end":   1617828288734
+    'id': 'c96627cd-be56-4a76-aa0b-d6f9e664d531',
+    'employeeId': '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
+    'start': 1617828256683,
+    'end': 1617828288734
   };
 
   const shift2: Shift = {
-    "id": "8f7257a6-e9f5-47e4-a5d5-68ae0bfa5f81",
-    "employeeId": "8ae2a281-1555-43fa-bb11-945b51cfdbb5",
-    "start": 1617818286683,
-    "end":   1617838298734
+    'id': '8f7257a6-e9f5-47e4-a5d5-68ae0bfa5f81',
+    'employeeId': '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
+    'start': 1617818286683,
+    'end': 1617838298734
   };
 
   const shifts: Shift[] = [shift1, shift2];
@@ -56,17 +54,17 @@ describe('ShiftsEffects', () => {
         fromEffects.ShiftsEffects,
         { provide: Actions, useFactory: getActions }
       ]
-    })
+    });
 
-    actions$ = TestBed.get(Actions)
-    service = TestBed.get(ShiftsService)
+    actions$ = TestBed.get(Actions);
+    service = TestBed.get(ShiftsService);
     effects = TestBed.get(fromEffects.ShiftsEffects);
 
-    spyOn(service, 'getShifts').and.returnValue(of(shifts))
-    spyOn(service, 'createShift').and.returnValue(of(shifts[0]))
-    spyOn(service, 'updateShift').and.returnValue(of(shifts[0]))
-    spyOn(service, 'removeShift').and.returnValue(of(shifts[0]))
-  })
+    spyOn(service, 'getShifts').and.returnValue(of(shifts));
+    spyOn(service, 'createShift').and.returnValue(of(shifts[0]));
+    spyOn(service, 'updateShift').and.returnValue(of(shifts[0]));
+    spyOn(service, 'removeShift').and.returnValue(of(shifts[0]));
+  });
 
   describe('loadShifts$', () => {
     it('should return a collection from LoadShiftsSuccess', () => {
@@ -78,41 +76,41 @@ describe('ShiftsEffects', () => {
 
       expect(effects.loadShifts$).toBeObservable(expected);
     });
-  })
+  });
 
   describe('createShift$', () => {
     it('should work', () => {
-      const action = new fromActions.CreateShift(shifts[0])
-      const completion = new fromActions.CreateShiftSuccess(shifts[0])
+      const action = new fromActions.CreateShift(shifts[0]);
+      const completion = new fromActions.CreateShiftSuccess(shifts[0]);
 
-      actions$.stream = hot('-a', {a: action })
-      const expected = cold('-c', { c: completion})
+      actions$.stream = hot('-a', { a: action });
+      const expected = cold('-c', { c: completion });
 
       expect(effects.createShift$).toBeObservable(expected);
-    })
+    });
   });
 
   describe('updateShift$', () => {
     it('should work', () => {
-      const action = new fromActions.UpdateShift(shifts[0])
-      const completion = new fromActions.UpdateShiftSuccess(shifts[0])
+      const action = new fromActions.UpdateShift(shifts[0]);
+      const completion = new fromActions.UpdateShiftSuccess(shifts[0]);
 
-      actions$.stream = hot('-a', { a: action })
-      const expected = cold('-c', { c: completion })
+      actions$.stream = hot('-a', { a: action });
+      const expected = cold('-c', { c: completion });
 
-      expect(effects.updateShift$).toBeObservable(expected)
-    })
-  })
+      expect(effects.updateShift$).toBeObservable(expected);
+    });
+  });
 
   describe('removeShift$', () => {
     it('should work', () => {
-      const action = new fromActions.RemoveShift(shifts[0])
-      const completion = new fromActions.RemoveShiftSuccess(shifts[0])
+      const action = new fromActions.RemoveShift(shifts[0]);
+      const completion = new fromActions.RemoveShiftSuccess(shifts[0]);
 
-      actions$.stream = hot('-a', { a: action })
-      const expected = cold('-c', { c: completion})
+      actions$.stream = hot('-a', { a: action });
+      const expected = cold('-c', { c: completion });
 
-      expect(effects.removeShift$).toBeObservable(expected)
-    })
-  })
-})
+      expect(effects.removeShift$).toBeObservable(expected);
+    });
+  });
+});

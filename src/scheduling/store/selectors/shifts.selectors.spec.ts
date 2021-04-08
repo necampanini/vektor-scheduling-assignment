@@ -120,20 +120,20 @@ describe('Shifts Selectors', () => {
       let routerState = {
         state: {
           url: 'shift/c47df9eb-354e-4add-a3e8-934ceda4b251',
-          params: {shiftId: 'c47df9eb-354e-4add-a3e8-934ceda4b251'},
+          params: { shiftId: 'c47df9eb-354e-4add-a3e8-934ceda4b251' },
           queryParams: {}
         }
-      }
+      };
 
       store
         .select(fromSelectors.getShiftsEntities)
-        .subscribe(value => (result = value))
+        .subscribe(value => (result = value));
 
-      store.dispatch(new fromActions.LoadShiftsSuccess(shifts))
+      store.dispatch(new fromActions.LoadShiftsSuccess(shifts));
 
       expect(fromSelectors.getSelectedShift.projector(result, routerState))
-        .toBe(entities['c47df9eb-354e-4add-a3e8-934ceda4b251'])
-    })
+        .toBe(entities['c47df9eb-354e-4add-a3e8-934ceda4b251']);
+    });
   });
 
   describe('getAllShifts', () => {
@@ -142,31 +142,31 @@ describe('Shifts Selectors', () => {
 
       store
         .select(fromSelectors.getAllShifts)
-        .subscribe(value => (result = value))
+        .subscribe(value => (result = value));
 
-      expect(result).toEqual([])
+      expect(result).toEqual([]);
 
-      store.dispatch(new fromActions.LoadShiftsSuccess(shifts))
+      store.dispatch(new fromActions.LoadShiftsSuccess(shifts));
 
-      expect(result).toEqual(shifts)
-    })
-  })
+      expect(result).toEqual(shifts);
+    });
+  });
 
   describe('getShiftsLoaded', () => {
-    it ('should return the shifts loaded state', () => {
+    it('should return the shifts loaded state', () => {
       let result;
 
       store
         .select(fromSelectors.getShiftsLoaded)
-        .subscribe(value => (result = value))
+        .subscribe(value => (result = value));
 
-      expect(result).toEqual(false)
+      expect(result).toEqual(false);
 
-      store.dispatch(new fromActions.LoadShiftsSuccess(shifts))
+      store.dispatch(new fromActions.LoadShiftsSuccess(shifts));
 
-      expect(result).toEqual(true)
-    })
-  })
+      expect(result).toEqual(true);
+    });
+  });
 
   describe('getShiftsLoading', () => {
     it('should return the shifts loading state', () => {
@@ -174,13 +174,13 @@ describe('Shifts Selectors', () => {
 
       store
         .select(fromSelectors.getShiftsLoading)
-        .subscribe(value => (result = value))
+        .subscribe(value => (result = value));
 
-      expect(result).toEqual(false)
+      expect(result).toEqual(false);
 
-      store.dispatch(new fromActions.LoadShifts())
+      store.dispatch(new fromActions.LoadShifts());
 
       expect(result).toEqual(true);
-    })
-  })
+    });
+  });
 });
