@@ -1,8 +1,8 @@
 import { createSelector } from '@ngrx/store';
 
-import * as fromRoot from '../../../app/store'
-import * as fromFeature from '../reducers'
-import * as fromEmployees from '../reducers/employees.reducer'
+import * as fromRoot from '../../../app/store';
+import * as fromFeature from '../reducers';
+import * as fromEmployees from '../reducers/employees.reducer';
 
 import { Employee } from '../../models/employee.model';
 
@@ -19,9 +19,7 @@ export const getEmployeesEntities = createSelector(
 export const getSelectedEmployee = createSelector(
   getEmployeesEntities,
   fromRoot.getRouterState,
-  (entities, router): Employee => {
-    return router.state && entities[router.state.params.employeeId];
-  }
+  (entities, router): Employee => router.state && entities[router.state.params.employeeId]
 )
 
 export const getAllEmployees = createSelector(

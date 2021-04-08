@@ -1,16 +1,22 @@
 import { combineReducers, Store, StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { Router } from '@angular/router';
 
 import { TestBed } from '@angular/core/testing';
-import { Employee } from '../../models/employee.model';
 
+import { Employee } from '../../models/employee.model';
 import * as fromRoot from '../../../app/store';
 import * as fromReducers from '../reducers/index';
 import * as fromActions from '../actions/index';
+
 import * as fromSelectors from '../selectors/employees.selectors';
-import { RouterStateUrl } from '../../../app/store';
+import { RouterTestingModule } from '@angular/router/testing';
+
+class MockComponent {}
 
 describe('Employees Selectors', () => {
   let store: Store<fromReducers.SchedulingState>;
+  let router: Router;
 
   const employee1: Employee = {
     id: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
@@ -44,15 +50,24 @@ describe('Employees Selectors', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule.withRoutes([
+          {
+            path: 'employee/:employeeId', component: MockComponent
+          }
+        ]),
         StoreModule.forRoot({
           ...fromRoot.reducers,
           scheduling: combineReducers(fromReducers.reducers)
+        }),
+        StoreRouterConnectingModule.forRoot({
+          stateKey: 'router'
         })
       ]
     });
 
-    // TODO: .get is deprecated, find latest best practice for injecting Store
+    // TODO: .get is deprecated, find latest best practice for testing Store
     store = TestBed.get(Store);
+    router = TestBed.get(Router)
   });
 
   describe('getEmployeeState', () => {
@@ -95,40 +110,33 @@ describe('Employees Selectors', () => {
     });
   });
 
-  // TODO: investigate how to test router state via selector
-  // describe('getSelectedEmployee', () => {
-  //   it('should return selected employee as an entity', () => {
-  //
-  //     let result;
-  //     let params;
-  //
-  //     store.dispatch(new fromActions.LoadEmployeesSuccess(employees));
-  //
-  //     store.dispatch({
-  //       type: fromRoot.GO,
-  //       payload: {
-  //         routerState: {
-  //           url: '/scheduling',
-  //           queryParams: {},
-  //           params: { employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5' }
-  //         },
-  //         event: {},
-  //       }
-  //     });
-  //
-  //     // store
-  //     //   .select(fromRoot.getRouterState)
-  //     //   .subscribe(routerState => {
-  //     //     console.log(routerState);
-  //     //     return (params = routerState?.state.params);
-  //     //   });
-  //
-  //     store
-  //       .select(fromSelectors.getSelectedEmployee)
-  //       .subscribe(selectedEmployee => (result = selectedEmployee));
-  //
-  //     expect(result).toEqual(entities['8ae2a281-1555-43fa-bb11-945b51cfdbb5']);
-  //   });
-  // });
+  // NOTE.NC: hard-coding what router reducer would give back
+  // Would ideally like to test selector for router state in conjunction with
+  // entities (the selector of which works as intended)
+  describe('getSelectedEmployee', () => {
+    it('should return selected employee as an entity', () => {
+
+      let result;
+      // expected state after having navigated via router or routing action
+      let routerState = {
+        state: {
+          url: 'employee/8ae2a281-1555-43fa-bb11-945b51cfdbb5',
+          params: {employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5'},
+          queryParams: {}
+        }
+      }
+
+      store
+        .select(fromSelectors.getEmployeesEntities)
+        .subscribe(value => {
+          return (result = value);
+        })
+
+      store.dispatch(new fromActions.LoadEmployeesSuccess(employees));
+
+      expect(fromSelectors.getSelectedEmployee.projector(result, routerState))
+        .toBe(entities['8ae2a281-1555-43fa-bb11-945b51cfdbb5']);
+    });
+  });
 
 });
