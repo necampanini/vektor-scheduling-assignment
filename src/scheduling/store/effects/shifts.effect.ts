@@ -23,6 +23,43 @@ export class ShiftsEffects {
       })
     ))
 
+  createShift$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType<shiftActions.CreateShift>(shiftActions.CREATE_SHIFT),
+      map((action: shiftActions.CreateShift) => action.payload),
+      switchMap(shift => {
+        return this.shiftsService.createShift(shift).pipe(
+          map(shift => new shiftActions.CreateShiftSuccess(shift)),
+          catchError(error => of(new shiftActions.CreateShiftFail(error)))
+        )
+      })
+    )
+  })
+
+  updateShift$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<shiftActions.UpdateShift>(shiftActions.UPDATE_SHIFT),
+      map((action: shiftActions.UpdateShift) => action.payload),
+      switchMap(shift => {
+        return this.shiftsService.updateShift(shift).pipe(
+          map(shift => new shiftActions.UpdateShiftSuccess(shift)),
+          catchError(error => of(new shiftActions.UpdateShiftFail(error)))
+        );
+      })
+    ))
+
+  removeShift$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<shiftActions.RemoveShift>(shiftActions.REMOVE_SHIFT),
+      map((action: shiftActions.RemoveShift) => action.payload),
+      switchMap(shift => {
+        return this.shiftsService.removeShift(shift).pipe(
+          map(shift => new shiftActions.RemoveShiftSuccess(shift)),
+          catchError(error => of(new shiftActions.RemoveShiftFail(error)))
+        );
+      })
+    ))
+
   constructor(private actions$: Actions,
               private shiftsService: fromServices.ShiftsService) {
   }

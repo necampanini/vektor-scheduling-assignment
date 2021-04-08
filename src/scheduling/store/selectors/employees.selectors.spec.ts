@@ -110,7 +110,7 @@ describe('Employees Selectors', () => {
     });
   });
 
-  // NOTE.NC: hard-coding what router reducer would give back
+  // NOTE.NC: hard-coding what the router reducer would give back
   // Would ideally like to test selector for router state in conjunction with
   // entities (the selector of which works as intended)
   describe('getSelectedEmployee', () => {
@@ -139,4 +139,51 @@ describe('Employees Selectors', () => {
     });
   });
 
+  describe('getAllEmployees', () => {
+    it('should return employees as an array', () => {
+      let result;
+
+      store
+        .select(fromSelectors.getAllEmployees)
+        .subscribe(value => (result = value))
+
+      expect(result).toEqual([])
+
+      store.dispatch(new fromActions.LoadEmployeesSuccess(employees))
+
+      expect(result).toEqual(employees)
+    })
+  })
+
+  describe('getEmployeesLoaded', () => {
+    it('should return the employees loaded state', () => {
+      let result;
+
+      store
+        .select(fromSelectors.getEmployeesLoaded)
+        .subscribe(value => (result = value))
+
+      expect(result).toEqual(false);
+
+      store.dispatch(new fromActions.LoadEmployeesSuccess([]))
+
+      expect(result).toEqual(true);
+    })
+  })
+
+  describe('getEmployeesLoading', () => {
+    it('should return the employees loading state', () => {
+      let result;
+
+      store
+        .select(fromSelectors.getEmployeesLoading)
+        .subscribe(value => (result = value))
+
+      expect(result).toEqual(false);
+
+      store.dispatch(new fromActions.LoadEmployees())
+
+      expect(result).toEqual(true);
+    })
+  });
 });

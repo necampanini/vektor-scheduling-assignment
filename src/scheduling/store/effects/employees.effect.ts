@@ -1,27 +1,63 @@
-  import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import * as fromRoot from '../../../app/store'
-import * as employeeActions from '../actions/employees.action'
-import * as fromServices from '../../services'
+import * as fromActions from '../actions/employees.action';
+import * as fromServices from '../../services';
 
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { of } from 'rxjs'
+import { of } from 'rxjs';
 
 @Injectable()
 export class EmployeesEffects {
   loadEmployees$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<employeeActions.LoadEmployees>(employeeActions.LOAD_EMPLOYEES),
+      ofType<fromActions.LoadEmployees>(fromActions.LOAD_EMPLOYEES),
       switchMap(() => {
         return this.employeesService.getEmployees().pipe(
-          map(employees => new employeeActions.LoadEmployeesSuccess(employees)),
-          catchError((e) => of(new employeeActions.LoadEmployeesFail(e)))
+          map(employees => new fromActions.LoadEmployeesSuccess(employees)),
+          catchError((e) => of(new fromActions.LoadEmployeesFail(e)))
         );
       })
-    ))
+    ));
+
+  createEmployee$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<fromActions.CreateEmployee>(fromActions.CREATE_EMPLOYEE),
+      map((action: fromActions.CreateEmployee) => action.payload),
+      switchMap(employee => {
+        return this.employeesService.createEmployee(employee).pipe(
+          map(employee => new fromActions.CreateEmployeeSuccess(employee)),
+          catchError(error => of(new fromActions.CreateEmployeeFail(error)))
+        );
+      })
+    ));
+
+  // create employee success, should it immediately route to it?
+
+  updateEmployee$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<fromActions.UpdateEmployee>(fromActions.UPDATE_EMPLOYEE),
+      map((action: fromActions.UpdateEmployee) => action.payload),
+      switchMap(employee => {
+        return this.employeesService.updateEmployee(employee).pipe(
+          map(employee => new fromActions.UpdateEmployeeSuccess(employee)),
+          catchError(error => of(new fromActions.UpdateEmployeeFail(error)))
+        );
+      })
+    ));
+
+  removeEmployee$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<fromActions.RemoveEmployee>(fromActions.REMOVE_EMPLOYEE),
+      map((action: fromActions.RemoveEmployee) => action.payload),
+      switchMap(employee => {
+        return this.employeesService.removeEmployee(employee).pipe(
+          map(employee => new fromActions.RemoveEmployeeSuccess(employee)),
+          catchError(error => of(new fromActions.RemoveEmployeeFail(error)))
+        );
+      })
+    ));
 
   constructor(private actions$: Actions,
               private employeesService: fromServices.EmployeesService) {
