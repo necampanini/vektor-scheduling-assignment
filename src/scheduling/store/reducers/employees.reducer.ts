@@ -71,6 +71,6 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
   return state;
 }
 
-export const getEmployeesEntities = (state: EmployeesState) => state.entities;
+export const getEmployeeEntities = (state: EmployeesState) => state.entities;
 export const getEmployeesLoading = (state: EmployeesState) => state.loading;
 export const getEmployeesLoaded = (state: EmployeesState) => state.loaded;

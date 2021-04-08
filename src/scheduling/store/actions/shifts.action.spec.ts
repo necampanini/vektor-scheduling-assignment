@@ -1,7 +1,7 @@
 import * as fromShifts from './shifts.action';
 import { Shift } from '../../models/shift.model';
 
-describe('Employees Actions', () => {
+describe('Shifts Actions', () => {
 
   // LOAD
   describe('LoadShifts Actions', () => {

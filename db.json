@@ -4,7 +4,19 @@
       "id": "8ae2a281-1555-43fa-bb11-945b51cfdbb5",
       "firstName": "Johnny",
       "lastName": "Tester",
-      "employeeNumber": "8472"
+      "employeeNumber": 8472
+    },
+    {
+      "id": "73b7024f-962f-4fe8-962f-f61d1afbb9bd",
+      "firstName": "Johnny",
+      "lastName": "Tester",
+      "employeeNumber": 8471
+    },
+    {
+      "id": "8f49c882-32a6-4f49-9874-a8e3ecf8a1f1",
+      "firstName": "Johnny",
+      "lastName": "Tester",
+      "employeeNumber": 8470
     }
   ],
   "shifts": [

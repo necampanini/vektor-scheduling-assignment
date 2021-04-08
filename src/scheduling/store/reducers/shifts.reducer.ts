@@ -70,6 +70,6 @@ export function reducer(state = initialState, action: fromShifts.ShiftsAction): 
   return state;
 }
 
-export const getShiftsEntities = (state: ShiftsState) => state.entities;
+export const getShiftEntities = (state: ShiftsState) => state.entities;
 export const getShiftsLoading = (state: ShiftsState) => state.loading;
 export const getShiftsLoaded = (state: ShiftsState) => state.loaded;
