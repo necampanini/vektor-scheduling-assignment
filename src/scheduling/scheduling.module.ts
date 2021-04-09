@@ -37,6 +37,11 @@ export const SchedulingRoutes: Routes = [
     canActivate: [fromGuards.EmployeesGuard],
     component: fromContainers.EmployeeListContainerComponent,
   },
+  {
+    path: 'employees/:employeeId/shifts',
+    canActivate: [fromGuards.EmployeeExistsGuard, fromGuards.ShiftsGuard],
+    component: fromContainers.EmployeeShiftContainerComponent,
+  },
 ];
 
 @NgModule({

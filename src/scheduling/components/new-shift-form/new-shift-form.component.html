@@ -1,0 +1,92 @@
+<div class="mat-elevation-z2 p-4">
+  <h2>Add Shift</h2>
+  <form [formGroup]="form">
+    <div class="d-flex align-items-center">
+      <mat-form-field appearance="outline" class="mr-4 date-input">
+        <mat-label>Day</mat-label>
+        <input
+          [matDatepicker]="dayDatePicker"
+          formControlName="day"
+          matInput
+          readonly
+        />
+        <mat-datepicker-toggle
+          [for]="dayDatePicker"
+          matSuffix
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dayDatePicker disabled="false"></mat-datepicker>
+        <mat-hint>Please use calendar icon</mat-hint>
+      </mat-form-field>
+
+      <div class="d-flex flex-column mr-4">
+        <div class="font-weight-bold">Start</div>
+        <div>
+          <mat-form-field class="mr-2 time-input">
+            <label>Hour</label>
+            <mat-select formControlName="startHour">
+              <mat-option *ngFor="let hour of hours" [value]="hour.value">
+                {{ hour.display }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="mr-2 time-input">
+            <label>Minute</label>
+            <mat-select formControlName="startMinute">
+              <mat-option
+                *ngFor="let minute of minutes"
+                [value]="minute.value"
+              >
+                {{ minute.display }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="mr-2 time-input">
+            <label>Period</label>
+            <mat-select formControlName="startPeriod">
+              <mat-option value="AM">AM</mat-option>
+              <mat-option value="PM">PM</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!--    possible abstraction -->
+      <div class="d-flex flex-column mr-4">
+        <div class="font-weight-bold">End</div>
+        <div>
+          <mat-form-field class="mr-2 time-input">
+            <label>Hour</label>
+            <mat-select formControlName="endHour">
+              <mat-option *ngFor="let hour of hours" [value]="hour.value">
+                {{ hour.display }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="mr-2 time-input">
+            <label>Minute</label>
+            <mat-select formControlName="endMinute">
+              <mat-option
+                *ngFor="let minute of minutes"
+                [value]="minute.value"
+              >
+                {{ minute.display }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="mr-2 time-input">
+            <label>Period</label>
+            <mat-select formControlName="endPeriod">
+              <mat-option value="AM">AM</mat-option>
+              <mat-option value="PM">PM</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>

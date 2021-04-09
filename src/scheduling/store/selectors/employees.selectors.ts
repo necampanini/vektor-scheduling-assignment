@@ -19,12 +19,13 @@ export const getEmployeesEntities = createSelector(
 export const getSelectedEmployee = createSelector(
   getEmployeesEntities,
   fromRoot.getRouterState,
-  (entities, router): Employee => router.state && entities[router.state.params.employeeId]
+  (entities, router): Employee =>
+    router.state && entities[router.state.params.employeeId]
 );
 
 export const getAllEmployees = createSelector(
   getEmployeesEntities,
-  entities => Object.keys(entities).map(id => entities[id])
+  (entities) => Object.keys(entities).map((id) => entities[id])
 );
 
 export const getEmployeesLoaded = createSelector(

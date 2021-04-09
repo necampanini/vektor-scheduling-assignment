@@ -24,9 +24,21 @@ export const getSelectedShift = createSelector(
   }
 );
 
-export const getAllShifts = createSelector(
-  getShiftsEntities,
-  entities => Object.keys(entities).map(id => entities[id])
+export const getAllShifts = createSelector(getShiftsEntities, (entities) =>
+  Object.keys(entities).map((id) => entities[id])
+);
+
+export const getSelectedEmployeesShifts = createSelector(
+  getAllShifts,
+  fromRoot.getRouterState,
+  (shifts, router): Shift[] => {
+    return (
+      router.state &&
+      shifts.filter(
+        (shift) => shift.employeeId == router.state.params.employeeId
+      )
+    );
+  }
 );
 
 export const getShiftsLoaded = createSelector(

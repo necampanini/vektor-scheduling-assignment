@@ -11,16 +11,14 @@ import { map, tap } from 'rxjs/operators';
 @Injectable()
 export class RouterEffects {
   navigate$ = createEffect(
-    () => {
-      return this.actions$.pipe(
+    () =>
+      this.actions$.pipe(
         ofType<RouterActions.Go>(RouterActions.GO),
         map((action) => action.payload),
         tap(({ path, query: queryParams, extras }) => {
-          console.log(path, queryParams, extras);
           this.router.navigate(path, { queryParams, ...extras });
         })
-      );
-    },
+      ),
     { dispatch: false }
   );
 
