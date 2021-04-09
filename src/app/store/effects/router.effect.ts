@@ -24,11 +24,14 @@ export class RouterEffects {
     { dispatch: false }
   );
 
-  navigateBack$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType<RouterActions.Back>(RouterActions.BACK),
-      tap(() => this.location.back)
-    ), { dispatch: false });
+  navigateBack$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType<RouterActions.Back>(RouterActions.BACK),
+        tap(() => this.location.back())
+      ),
+    { dispatch: false }
+  );
 
   navigateForward$ = createEffect(() => {
     return this.actions$.pipe(
@@ -42,6 +45,5 @@ export class RouterEffects {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private location: Location
-  ) {
-  }
+  ) {}
 }

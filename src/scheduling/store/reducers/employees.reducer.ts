@@ -3,8 +3,8 @@ import { Employee } from '../../models/employee.model';
 import * as fromEmployees from '../actions';
 import * as fromUtils from '../../../app/store/reducers/common-reducer.utils';
 
-export interface EmployeesState extends fromUtils.BaseEntityInterface<Employee> {
-}
+export interface EmployeesState
+  extends fromUtils.BaseEntityInterface<Employee> {}
 
 export const initialState: EmployeesState = {
   entities: {},
@@ -12,14 +12,17 @@ export const initialState: EmployeesState = {
   loaded: false,
 };
 
-export function reducer(state = initialState, action: fromEmployees.EmployeesAction): EmployeesState {
+export function reducer(
+  state = initialState,
+  action: fromEmployees.EmployeesAction
+): EmployeesState {
   switch (action.type) {
     // load
     case fromEmployees.LOAD_EMPLOYEES: {
       return {
         ...state,
         loading: true,
-        loaded: false
+        loaded: false,
       };
     }
 
@@ -38,7 +41,7 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
         ...state,
         entities,
         loading: false,
-        loaded: true
+        loaded: true,
       };
     }
 
@@ -48,12 +51,12 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
       const employee = action.payload;
       const entities = {
         ...state.entities,
-        [employee.id]: employee
+        [employee.id]: employee,
       };
 
       return {
         ...state,
-        entities
+        entities,
       };
     }
 
@@ -63,7 +66,7 @@ export function reducer(state = initialState, action: fromEmployees.EmployeesAct
 
       return {
         ...state,
-        entities
+        entities,
       };
     }
   }

@@ -11,24 +11,32 @@ import { EffectsModule } from '@ngrx/effects';
 import { effects, reducers } from './store';
 
 // components
+import * as fromComponents from './components';
+
 // containers
 import * as fromContainers from './containers';
 
 // guards
+import * as fromGuards from './guards';
+
 // services
 import * as fromServices from './services';
-
 
 // routes
 export const SchedulingRoutes: Routes = [
   {
     path: '',
-    component: fromContainers.LandingPageContainerComponent
+    component: fromContainers.LandingPageContainerComponent,
   },
   {
     path: 'employees/new',
-    component: fromContainers.AddEmployeeContainerComponent
-  }
+    component: fromContainers.AddEmployeeContainerComponent,
+  },
+  {
+    path: 'employees',
+    canActivate: [fromGuards.EmployeesGuard],
+    component: fromContainers.EmployeeListContainerComponent,
+  },
 ];
 
 @NgModule({
@@ -39,11 +47,10 @@ export const SchedulingRoutes: Routes = [
     HttpClientModule,
     RouterModule.forChild(SchedulingRoutes),
     StoreModule.forFeature('scheduling', reducers),
-    EffectsModule.forFeature(effects)
+    EffectsModule.forFeature(effects),
   ],
-  providers: [...fromServices.services],
-  declarations: [...fromContainers.containers],
+  providers: [...fromServices.services, ...fromGuards.guards],
+  declarations: [...fromContainers.containers, ...fromComponents.components],
   exports: [...fromContainers.containers],
 })
-export class SchedulingModule {
-}
+export class SchedulingModule {}

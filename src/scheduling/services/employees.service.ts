@@ -8,30 +8,29 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class EmployeesService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getEmployees(): Observable<Employee[]> {
     return this.http
-      .get<Employee[]>(`/api/shifts`)
+      .get<Employee[]>(`/api/employees`)
       .pipe(catchError((error: any) => of(error.json())));
   }
 
   createEmployee(payload: Employee): Observable<Employee> {
     return this.http
-      .post<Employee>(`/api/shifts`, payload)
+      .post<Employee>(`/api/employees`, payload)
       .pipe(catchError((error: any) => of(error.json())));
   }
 
   updateEmployee(payload: Employee): Observable<Employee> {
     return this.http
-      .put<Employee>(`/api/shifts/${ payload.id }`, payload)
+      .put<Employee>(`/api/employees/${payload.id}`, payload)
       .pipe(catchError((error: any) => of(error.json())));
   }
 
   removeEmployee(payload: Employee): Observable<Employee> {
     return this.http
-      .delete<any>(`/api/shifts/${ payload.id }`)
+      .delete<any>(`/api/employees/${payload.id}`)
       .pipe(catchError((error: any) => of(error.json())));
   }
 }

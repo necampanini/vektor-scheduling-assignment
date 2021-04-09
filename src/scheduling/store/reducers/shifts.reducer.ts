@@ -45,10 +45,10 @@ export function reducer(state = initialState, action: fromShifts.ShiftsAction): 
     // create/update
     case fromShifts.CREATE_SHIFT_SUCCESS:
     case fromShifts.UPDATE_SHIFT_SUCCESS: {
-      const employee = action.payload;
+      const shift = action.payload;
       const entities = {
         ...state.entities,
-        [employee.id]: employee
+        [shift.id]: shift
       };
 
       return {
