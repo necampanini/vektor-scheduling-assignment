@@ -1,13 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import * as fromUtils from './time.utils';
+import * as fromUtils from '../../utils/time.utils';
 import { Shift } from '../../models/shift.model';
-
-interface EmployeeShiftForm {
-  employeeId: string;
-  start: Date;
-  end: Date;
-}
+import { Employee } from '../../models/employee.model';
 
 @Component({
   selector: 'new-shift-form',
@@ -16,7 +11,7 @@ interface EmployeeShiftForm {
 })
 export class NewShiftFormComponent implements OnInit {
   @Input()
-  employeeId: string;
+  employee: Employee;
 
   @Output()
   addShift: EventEmitter<Shift> = new EventEmitter<Shift>();
@@ -76,7 +71,7 @@ export class NewShiftFormComponent implements OnInit {
 
   onSubmit = () => {
     this.addShift.emit({
-      employeeId: this.employeeId,
+      employeeId: this.employee.id,
       start: this.shiftStart,
       end: this.shiftEnd,
     } as Shift);

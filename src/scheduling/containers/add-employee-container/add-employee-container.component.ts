@@ -44,7 +44,7 @@ import * as fromRoot from '../../../app/store';
             </button>
             <button
               mat-stroked-button
-              color="accent"
+              color="primary"
               type="button"
               (click)="goBack()"
             >

@@ -1,66 +1,50 @@
 {
   "employees": [
     {
-      "id": "a9c645b3-a470-8b50-b135-73790a638039",
+      "id": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
       "firstName": "Nicholas",
       "middleName": "E",
       "lastName": "Campanini",
-      "employeeNumber": "23-s9d8",
-      "email": "necam2gisd.com"
-    },
-    {
-      "id": "2b632feb-5abc-451e-9078-8e3208e94bea",
-      "firstName": "Nicholas",
-      "middleName": "E",
-      "lastName": "Campanini",
-      "employeeNumber": "23-s9d8",
-      "email": "necam2gisd.com"
-    },
-    {
-      "id": "913f6e2a-a74f-4f07-b162-6c14e7d23711",
-      "firstName": "Nicholas",
-      "middleName": "E",
-      "lastName": "Campanini",
-      "employeeNumber": "23-s9d8",
-      "email": "necam2gisd.com"
-    },
-    {
-      "id": "0749e2eb-1564-4983-a90f-308fcfa2b8fa",
-      "firstName": "Nicholas",
-      "middleName": "E",
-      "lastName": "Campanini",
-      "employeeNumber": "23-s9d8",
-      "email": "necam2gisd.com"
-    },
-    {
-      "id": "274b7583-03c1-4457-a988-2941dff78d10",
-      "firstName": "Nicholas",
-      "middleName": "E",
-      "lastName": "Campanini",
-      "employeeNumber": "23-s9d8",
-      "email": "necam2gisd.com"
-    },
-    {
-      "id": "a0bc3f7b-cf19-99c8-4df1-489ad5bd7f93",
-      "firstName": "NEW",
-      "middleName": "NEW",
-      "lastName": "NEWER",
-      "employeeNumber": "2938298",
-      "email": "no"
+      "employeeNumber": "98237",
+      "email": "no@gmail.com"
     }
   ],
   "shifts": [
     {
-      "id": 1,
-      "employeeId": "a0bc3f7b-cf19-99c8-4df1-489ad5bd7f93",
-      "start": "2021-04-09T10:00:50.371Z",
-      "end": "2021-04-09T19:00:50.371Z"
+      "id": "5d449561-3aca-31c8-3b6f-bff662286177",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-10T10:00:00.000Z",
+      "end": "2021-04-10T19:00:00.000Z"
     },
     {
-      "id": "3cf10380-3597-d5bd-c28d-e0dd2616720f",
-      "employeeId": "a0bc3f7b-cf19-99c8-4df1-489ad5bd7f93",
-      "start": "2021-04-09T10:00:34.215Z",
-      "end": "2021-04-09T19:00:34.215Z"
+      "id": "ed8f2b80-2749-10df-fddc-0e408f775410",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-09T10:00:55.848Z",
+      "end": "2021-04-09T19:00:55.848Z"
+    },
+    {
+      "id": "f7e60100-8ee1-71ce-23a4-25c0036ba22f",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-12T10:00:00.000Z",
+      "end": "2021-04-12T19:00:00.000Z"
+    },
+    {
+      "id": "546345a3-9d1f-8354-2fae-47adfe2558c9",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-10T20:00:00.000Z",
+      "end": "2021-04-10T21:00:00.000Z"
+    },
+    {
+      "id": "dbc1b62e-f134-d4be-03cb-a56bfbcf4d3d",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-09T10:00:38.006Z",
+      "end": "2021-04-09T19:00:38.006Z"
+    },
+    {
+      "id": "93c00092-4135-4e7e-18b5-3af1904ba1f8",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-09T10:00:49.699Z",
+      "end": "2021-04-09T19:00:49.699Z"
     }
   ]
 }

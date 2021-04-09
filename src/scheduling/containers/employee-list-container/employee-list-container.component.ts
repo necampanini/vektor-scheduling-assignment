@@ -12,7 +12,12 @@ import * as fromRoot from '../../../app/store';
   template: `
     <div class="d-flex align-items-center flex-column">
       <h1>All Employees</h1>
-      <button mat-stroked-button color="primary" (click)="goBack()">
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="goBack()"
+        class="mb-2"
+      >
         Back
       </button>
       <div
@@ -20,7 +25,6 @@ import * as fromRoot from '../../../app/store';
       >
         <employee-list-item
           *ngFor="let employee of employees$ | async"
-          class="list-item-container"
           [employee]="employee"
           (addShift)="onAddShiftNavigate($event)"
           (viewSchedule)="onViewScheduleNavigate($event)"
