@@ -39,14 +39,28 @@
       "lastName": "Campanini",
       "employeeNumber": "23-s9d8",
       "email": "necam2gisd.com"
+    },
+    {
+      "id": "a0bc3f7b-cf19-99c8-4df1-489ad5bd7f93",
+      "firstName": "NEW",
+      "middleName": "NEW",
+      "lastName": "NEWER",
+      "employeeNumber": "2938298",
+      "email": "no"
     }
   ],
   "shifts": [
     {
-      "id": "c96627cd-be56-4a76-aa0b-d6f9e664d531",
-      "employeeId": "2b632feb-5abc-451e-9078-8e3208e94bea",
-      "start": 1617828286683,
-      "end": 1617828298734
+      "id": 1,
+      "employeeId": "a0bc3f7b-cf19-99c8-4df1-489ad5bd7f93",
+      "start": "2021-04-09T10:00:50.371Z",
+      "end": "2021-04-09T19:00:50.371Z"
+    },
+    {
+      "id": "3cf10380-3597-d5bd-c28d-e0dd2616720f",
+      "employeeId": "a0bc3f7b-cf19-99c8-4df1-489ad5bd7f93",
+      "start": "2021-04-09T10:00:34.215Z",
+      "end": "2021-04-09T19:00:34.215Z"
     }
   ]
 }

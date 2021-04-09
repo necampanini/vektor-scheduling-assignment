@@ -18,7 +18,10 @@ import * as fromStore from '../../store';
         </h2>
       </div>
 
-      <new-shift-form></new-shift-form>
+      <new-shift-form
+        [employeeId]="(employee$ | async)?.id"
+        (addShift)="onShiftAdd($event)"
+      ></new-shift-form>
     </div>
   `,
   styleUrls: ['employee-shift-container.component.scss'],
@@ -33,4 +36,8 @@ export class EmployeeShiftContainerComponent implements OnInit {
     this.employee$ = this.store.select(fromStore.getSelectedEmployee);
     this.shifts$ = this.store.select(fromStore.getSelectedEmployeesShifts);
   }
+
+  onShiftAdd = (shift: Shift) => {
+    this.store.dispatch(new fromStore.CreateShift(shift));
+  };
 }

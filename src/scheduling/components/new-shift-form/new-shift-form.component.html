@@ -1,6 +1,6 @@
 <div class="mat-elevation-z2 p-4">
   <h2>Add Shift</h2>
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="d-flex align-items-center">
       <mat-form-field appearance="outline" class="mr-4 date-input">
         <mat-label>Day</mat-label>
@@ -87,6 +87,9 @@
         </div>
       </div>
     </div>
+    <button mat-stroked-button color="primary" [disabled]="!canSubmit" type="submit">
+      Save
+    </button>
   </form>
 
 </div>

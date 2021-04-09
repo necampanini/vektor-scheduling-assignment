@@ -23,8 +23,8 @@ export class EmployeesEffects {
     )
   );
 
-  createEmployee$ = createEffect(() => {
-    return this.actions$.pipe(
+  createEmployee$ = createEffect(() =>
+    this.actions$.pipe(
       ofType<fromActions.CreateEmployee>(fromActions.CREATE_EMPLOYEE),
       // NC.Note: to support/store GUIDs as Ids, hook in here to create one before it's sent off to the service
       map((action: fromActions.CreateEmployee) => ({
@@ -37,8 +37,8 @@ export class EmployeesEffects {
           catchError((error) => of(new fromActions.CreateEmployeeFail(error)))
         );
       })
-    );
-  });
+    )
+  );
 
   // create employee success, should it immediately route to it?
 
