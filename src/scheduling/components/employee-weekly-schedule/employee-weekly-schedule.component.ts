@@ -16,15 +16,19 @@ import * as fromUtils from '../../utils';
     <div class="container mat-elevation-z2 d-flex justify-content-around">
       <div
         *ngFor="let day of currentWeek"
-        class="d-flex flex-column align-items-center justify-content-center border-light"
+        class="d-flex flex-column align-items-center border-light"
       >
         <h3>{{ day.day }}</h3>
 
-        <ul>
-          <li *ngFor="let shift of shiftEntities[day.key]">
-            Start: {{ shift.start }}
-          </li>
-        </ul>
+        <div *ngFor="let shift of shiftEntities[day.key]">
+          <div>
+            {{ getTime(shift.start) }}
+          </div>
+          <div>
+            {{ getTime(shift.end) }}
+          </div>
+          <hr />
+        </div>
       </div>
     </div>
   `,
@@ -42,11 +46,15 @@ export class EmployeeWeeklyScheduleComponent implements OnChanges, OnInit {
   ngOnInit() {
     // in the interest of time manual week/date calculation to get the current week delegated to luxon
     this.currentWeek = fromUtils.getWeeklyView(this.currentWeek);
-    console.log(this.currentWeek);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.shiftEntities = fromUtils.reduceShifts(this.shifts);
-    console.log(this.shiftEntities);
+  }
+
+  getTime(start: string): string {
+    let date = new Date(start);
+    // lifted from: https://stackoverflow.com/a/20430558/3638143
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
 }

@@ -9,30 +9,17 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'landing-page-container',
   template: `
     <div>
-      <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>
-          <mat-card>
-            <mat-card-header>
-              <h2>Employees</h2>
-            </mat-card-header>
-            <mat-card-content> </mat-card-content>
-            <mat-card-actions>
-              <button mat-button (click)="routeTo('employees/new')">
-                Create
-              </button>
-              <button mat-button (click)="routeTo('employees')">Manage</button>
-            </mat-card-actions>
-          </mat-card>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-          <mat-card>
-            <mat-card-content>
-              <h3>Add Employee</h3>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <!--      apologies for the lack of styling expertise -->
+      <mat-card style="width: 25%; margin: auto">
+        <mat-card-header>
+          <h2>Employees</h2>
+        </mat-card-header>
+        <mat-card-content> </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="routeTo('employees/new')">Create</button>
+          <button mat-button (click)="routeTo('employees')">Manage</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   `,
   styleUrls: ['landing-page-container.component.scss'],

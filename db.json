@@ -7,6 +7,14 @@
       "lastName": "Campanini",
       "employeeNumber": "98237",
       "email": "no@gmail.com"
+    },
+    {
+      "id": "c4fb9490-9b43-18f1-e2b8-8c62a2721a0b",
+      "firstName": "Victor",
+      "middleName": "Hugo",
+      "lastName": "Denathrius",
+      "employeeNumber": "92838",
+      "email": "castle@nathria.com"
     }
   ],
   "shifts": [
@@ -45,6 +53,42 @@
       "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
       "start": "2021-04-09T10:00:49.699Z",
       "end": "2021-04-09T19:00:49.699Z"
+    },
+    {
+      "id": "08a67583-7db7-fa15-f399-74f04deb0721",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-08T10:00:00.000Z",
+      "end": "2021-04-08T19:00:00.000Z"
+    },
+    {
+      "id": "0639d0d2-0bf0-c170-523d-b1010ec4e0af",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-08T10:00:00.000Z",
+      "end": "2021-04-08T19:00:00.000Z"
+    },
+    {
+      "id": "612d316b-3f2d-d382-aa9e-2e7055c18476",
+      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "start": "2021-04-09T10:00:00.000Z",
+      "end": "2021-04-09T19:00:00.000Z"
+    },
+    {
+      "id": "590edc0b-b354-ca4b-ef36-359d2921855c",
+      "employeeId": "c4fb9490-9b43-18f1-e2b8-8c62a2721a0b",
+      "start": "2021-04-09T10:00:30.805Z",
+      "end": "2021-04-09T19:00:30.805Z"
+    },
+    {
+      "id": "5f85d8b2-7140-1cfd-b7d6-3479ff586c85",
+      "employeeId": "c4fb9490-9b43-18f1-e2b8-8c62a2721a0b",
+      "start": "2021-04-05T10:00:00.000Z",
+      "end": "2021-04-05T19:00:00.000Z"
+    },
+    {
+      "id": "46589c16-144a-9a3c-eaca-08ab1568ea44",
+      "employeeId": "c4fb9490-9b43-18f1-e2b8-8c62a2721a0b",
+      "start": "2021-04-05T22:00:00.000Z",
+      "end": "2021-04-06T03:00:00.000Z"
     }
   ]
 }

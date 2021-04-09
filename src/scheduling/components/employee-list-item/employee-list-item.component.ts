@@ -30,11 +30,11 @@ import { Employee } from '../../models/employee.model';
       </mat-card-content>
       <mat-card-actions>
         <button mat-stroked-button (click)="route('addShift')">
-          Add Shift
+          Manage/View Shifts
         </button>
-        <button mat-stroked-button (click)="route('viewSchedule')">
-          View Schedule
-        </button>
+        <!--        <button mat-stroked-button (click)="route('viewSchedule')">-->
+        <!--          View Schedule-->
+        <!--        </button>-->
       </mat-card-actions>
     </mat-card>
   `,

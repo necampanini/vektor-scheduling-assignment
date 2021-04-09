@@ -44,8 +44,8 @@ export function getWeeklyView(week) {
     'Sunday',
   ];
 
-  for (let i = 1; i <= 6; i++) {
-    let copy = x.plus({ day: i });
+  for (let i = 0; i < 6; i++) {
+    let copy = x.plus({ day: i + 1 });
     week.push({
       day: days[i],
       key: copy.toISO().slice(0, 10),
@@ -79,6 +79,6 @@ export function reduceShifts(
       ];
       return entity;
     },
-    { key: null, shifts: [] } // workaround - cal
+    { key: null, shifts: [] } // workaround - doesn't affect functionality but adds unnecessary keys
   );
 }

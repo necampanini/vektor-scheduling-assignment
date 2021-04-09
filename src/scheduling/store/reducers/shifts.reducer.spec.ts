@@ -37,14 +37,14 @@ describe('Shift Reducer', () => {
         {
           id: '788642c4-22c3-4931-b8bb-793368e01ac5',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
         {
           id: 'a55feadb-24ea-4c99-bae1-46341437d2b9',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
       ];
 
@@ -89,22 +89,22 @@ describe('Shift Reducer', () => {
         {
           id: '788642c4-22c3-4931-b8bb-793368e01ac5',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
         {
           id: 'a55feadb-24ea-4c99-bae1-46341437d2b9',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
       ];
 
       const newShift: Shift = {
         id: 'dd8e96f3-cb08-44ff-8caa-4f377551d683',
         employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-        start: 1617840754440,
-        end: 1617840754491
+        start: new Date(),
+        end: new Date(),
       };
 
       const entities = fromUtils.mapToEntity(shifts, {});
@@ -117,7 +117,7 @@ describe('Shift Reducer', () => {
       expect(Object.keys(state.entities).length).toEqual(3);
       expect(state.entities).toEqual({
         ...entities,
-        'dd8e96f3-cb08-44ff-8caa-4f377551d683': newShift
+        'dd8e96f3-cb08-44ff-8caa-4f377551d683': newShift,
       });
     });
   });
@@ -129,22 +129,22 @@ describe('Shift Reducer', () => {
         {
           id: '788642c4-22c3-4931-b8bb-793368e01ac5',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
         {
           id: 'a55feadb-24ea-4c99-bae1-46341437d2b9',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
       ];
 
       const updatedShift = {
         id: 'a55feadb-24ea-4c99-bae1-46341437d2b9',
         employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-        start: 1617840750000,
-        end: 1617840759999
+        start: new Date(),
+        end: new Date(),
       };
 
       const entities = fromUtils.mapToEntity(shifts, {});
@@ -157,7 +157,7 @@ describe('Shift Reducer', () => {
       expect(Object.keys(state.entities).length).toEqual(2);
       expect(state.entities).toEqual({
         ...entities,
-        'a55feadb-24ea-4c99-bae1-46341437d2b9': updatedShift
+        'a55feadb-24ea-4c99-bae1-46341437d2b9': updatedShift,
       });
     });
   });
@@ -169,14 +169,14 @@ describe('Shift Reducer', () => {
         {
           id: '788642c4-22c3-4931-b8bb-793368e01ac5',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
         {
           id: 'a55feadb-24ea-4c99-bae1-46341437d2b9',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
       ];
 
@@ -189,7 +189,7 @@ describe('Shift Reducer', () => {
 
       expect(Object.keys(state.entities).length).toEqual(1);
       expect(state.entities).toEqual({
-        'a55feadb-24ea-4c99-bae1-46341437d2b9': shifts[1]
+        'a55feadb-24ea-4c99-bae1-46341437d2b9': shifts[1],
       });
     });
   });
@@ -203,15 +203,15 @@ describe('ShiftsReducer Selectors', () => {
         '788642c4-22c3-4931-b8bb-793368e01ac5': {
           id: '788642c4-22c3-4931-b8bb-793368e01ac5',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
+          start: new Date(),
+          end: new Date(),
         },
         'a55feadb-24ea-4c99-bae1-46341437d2b9': {
           id: 'a55feadb-24ea-4c99-bae1-46341437d2b9',
           employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-          start: 1617840754445,
-          end: 1617840754499
-        }
+          start: new Date(),
+          end: new Date(),
+        },
       };
 
       const { initialState } = fromShifts;
