@@ -85,3 +85,9 @@ export function reduceShifts(
     { key: null, shifts: [] } // workaround - doesn't affect functionality but adds unnecessary keys
   );
 }
+
+export function getSimpleTimeFormat(start: string): string {
+  let date = new Date(start);
+  // lifted from: https://stackoverflow.com/a/20430558/3638143
+  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}

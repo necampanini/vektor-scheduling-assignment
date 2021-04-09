@@ -1,94 +1,26 @@
 {
   "employees": [
     {
-      "id": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "firstName": "Nicholas",
+      "id": "0546e085-2737-fa7e-51d2-be4b24b933a9",
+      "firstName": "Nick",
       "middleName": "E",
       "lastName": "Campanini",
-      "employeeNumber": "98237",
-      "email": "no@gmail.com"
-    },
-    {
-      "id": "c4fb9490-9b43-18f1-e2b8-8c62a2721a0b",
-      "firstName": "Victor",
-      "middleName": "Hugo",
-      "lastName": "Denathrius",
-      "employeeNumber": "92838",
-      "email": "castle@nathria.com"
+      "employeeNumber": "2938",
+      "email": "necampanini@outlook.com"
     }
   ],
   "shifts": [
     {
-      "id": "5d449561-3aca-31c8-3b6f-bff662286177",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "start": "2021-04-10T10:00:00.000Z",
-      "end": "2021-04-10T19:00:00.000Z"
-    },
-    {
-      "id": "ed8f2b80-2749-10df-fddc-0e408f775410",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "start": "2021-04-09T10:00:55.848Z",
-      "end": "2021-04-09T19:00:55.848Z"
-    },
-    {
-      "id": "f7e60100-8ee1-71ce-23a4-25c0036ba22f",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
+      "id": "afb3742d-ce19-842f-05d0-cea6ef448661",
+      "employeeId": "0546e085-2737-fa7e-51d2-be4b24b933a9",
       "start": "2021-04-12T10:00:00.000Z",
       "end": "2021-04-12T19:00:00.000Z"
     },
     {
-      "id": "546345a3-9d1f-8354-2fae-47adfe2558c9",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "start": "2021-04-10T20:00:00.000Z",
-      "end": "2021-04-10T21:00:00.000Z"
-    },
-    {
-      "id": "dbc1b62e-f134-d4be-03cb-a56bfbcf4d3d",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "start": "2021-04-09T10:00:38.006Z",
-      "end": "2021-04-09T19:00:38.006Z"
-    },
-    {
-      "id": "93c00092-4135-4e7e-18b5-3af1904ba1f8",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "start": "2021-04-09T10:00:49.699Z",
-      "end": "2021-04-09T19:00:49.699Z"
-    },
-    {
-      "id": "08a67583-7db7-fa15-f399-74f04deb0721",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "start": "2021-04-08T10:00:00.000Z",
-      "end": "2021-04-08T19:00:00.000Z"
-    },
-    {
-      "id": "0639d0d2-0bf0-c170-523d-b1010ec4e0af",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "start": "2021-04-08T10:00:00.000Z",
-      "end": "2021-04-08T19:00:00.000Z"
-    },
-    {
-      "id": "612d316b-3f2d-d382-aa9e-2e7055c18476",
-      "employeeId": "2e577d2f-bdd8-d1c3-6660-2b656fc6cade",
-      "start": "2021-04-09T10:00:00.000Z",
-      "end": "2021-04-09T19:00:00.000Z"
-    },
-    {
-      "id": "590edc0b-b354-ca4b-ef36-359d2921855c",
-      "employeeId": "c4fb9490-9b43-18f1-e2b8-8c62a2721a0b",
-      "start": "2021-04-09T10:00:30.805Z",
-      "end": "2021-04-09T19:00:30.805Z"
-    },
-    {
-      "id": "5f85d8b2-7140-1cfd-b7d6-3479ff586c85",
-      "employeeId": "c4fb9490-9b43-18f1-e2b8-8c62a2721a0b",
-      "start": "2021-04-05T10:00:00.000Z",
-      "end": "2021-04-05T19:00:00.000Z"
-    },
-    {
-      "id": "46589c16-144a-9a3c-eaca-08ab1568ea44",
-      "employeeId": "c4fb9490-9b43-18f1-e2b8-8c62a2721a0b",
-      "start": "2021-04-05T22:00:00.000Z",
-      "end": "2021-04-06T03:00:00.000Z"
+      "id": "8acf5282-170f-d12a-3afd-4e3c40bd2a27",
+      "employeeId": "0546e085-2737-fa7e-51d2-be4b24b933a9",
+      "start": "2021-04-11T10:00:00.000Z",
+      "end": "2021-04-11T19:00:00.000Z"
     }
   ]
 }

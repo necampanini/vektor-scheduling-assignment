@@ -4,22 +4,27 @@ import * as fromShifts from '../actions';
 import * as fromUtils from '../../../app/store/reducers/common-reducer.utils';
 
 export interface ShiftsState extends fromUtils.BaseEntityInterface<Shift> {
+  selectedDate?: Date;
 }
 
 export const initialState: ShiftsState = {
   entities: {},
   loading: false,
   loaded: false,
+  selectedDate: new Date(),
 };
 
-export function reducer(state = initialState, action: fromShifts.ShiftsAction): ShiftsState {
+export function reducer(
+  state = initialState,
+  action: fromShifts.ShiftsAction
+): ShiftsState {
   switch (action.type) {
     // load
     case fromShifts.LOAD_SHIFTS: {
       return {
         ...state,
         loading: true,
-        loaded: false
+        loaded: false,
       };
     }
 
@@ -38,7 +43,7 @@ export function reducer(state = initialState, action: fromShifts.ShiftsAction): 
         ...state,
         entities,
         loading: false,
-        loaded: true
+        loaded: true,
       };
     }
 
@@ -48,12 +53,12 @@ export function reducer(state = initialState, action: fromShifts.ShiftsAction): 
       const shift = action.payload;
       const entities = {
         ...state.entities,
-        [shift.id]: shift
+        [shift.id]: shift,
       };
 
       return {
         ...state,
-        entities
+        entities,
       };
     }
 
@@ -62,7 +67,14 @@ export function reducer(state = initialState, action: fromShifts.ShiftsAction): 
 
       return {
         ...state,
-        entities
+        entities,
+      };
+    }
+
+    case fromShifts.SET_SHIFT_DATE: {
+      return {
+        ...state,
+        selectedDate: action.payload,
       };
     }
   }
@@ -73,3 +85,4 @@ export function reducer(state = initialState, action: fromShifts.ShiftsAction): 
 export const getShiftEntities = (state: ShiftsState) => state.entities;
 export const getShiftsLoading = (state: ShiftsState) => state.loading;
 export const getShiftsLoaded = (state: ShiftsState) => state.loaded;
+export const getShiftsSelectedDate = (state: ShiftsState) => state.selectedDate;

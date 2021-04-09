@@ -8,8 +8,7 @@ import * as fromEmployees from '../selectors/employees.selectors';
 import * as fromUtils from '../../utils';
 
 import { Shift } from '../../models/shift.model';
-import { from } from 'rxjs';
-import { distinct, map } from 'rxjs/operators';
+import { Employee } from '../../models/employee.model';
 
 export const getShiftState = createSelector(
   fromFeature.getSchedulingState,
@@ -19,6 +18,11 @@ export const getShiftState = createSelector(
 export const getShiftsEntities = createSelector(
   getShiftState,
   fromShifts.getShiftEntities
+);
+
+export const getShiftsSelectedDate = createSelector(
+  getShiftState,
+  fromShifts.getShiftsSelectedDate
 );
 
 export const getSelectedShift = createSelector(
@@ -33,37 +37,35 @@ export const getAllShifts = createSelector(getShiftsEntities, (entities) =>
   Object.keys(entities).map((id) => entities[id])
 );
 
-export const getAllShiftsForDay = () =>
+export const getEmployeesAndShiftsForDay = () =>
   createSelector(
     fromEmployees.getEmployeesEntities,
     getAllShifts,
-    (employeeEntities, allShifts, props: { date: Date }) => {
-      // I want to revisit this and find a nice functional way to group all these
+    getShiftsSelectedDate,
+    (
+      employees,
+      shifts,
+      selectedDate
+    ): { employee: Employee; shifts: Shift[] }[] => {
+      let dateKey = selectedDate.toISOString().slice(0, 10);
 
-      let dateKey = props.date.toISOString().slice(0, 10);
-
-      let keyShiftArray = fromUtils.createKeyShiftsArray(allShifts);
+      let keyShiftArray = fromUtils.createKeyShiftsArray(shifts);
 
       let daysShifts = keyShiftArray
         .filter((keyShift) => keyShift.key == dateKey)
         .map((keyShift) => keyShift.shift);
 
       let allIds = daysShifts.map((f) => f.employeeId);
-      let uniqueIds = allIds.filter((id, index) => {
-        return allIds.indexOf(id) !== index;
-      });
-      console.log(uniqueIds);
+      let uniqueIds = [...new Set(allIds)];
 
-      let y = uniqueIds.map((id) => {
-        let employee = employeeEntities[id];
-        let theirShifts = daysShifts.filter((f) => f.employeeId == id);
+      return uniqueIds.map((id) => {
+        let employee = employees[id];
+        let shifts = daysShifts.filter((f) => f.employeeId == id);
         return {
           employee,
-          theirShifts,
+          shifts,
         };
       });
-
-      return y;
     }
   );
 

@@ -13,21 +13,24 @@ import * as fromUtils from '../../utils';
 @Component({
   selector: 'employee-weekly-schedule',
   template: `
-    <div class="container mat-elevation-z2 d-flex justify-content-around">
-      <div
-        *ngFor="let day of currentWeek"
-        class="d-flex flex-column align-items-center border-light"
-      >
-        <h3>{{ day.day }}</h3>
+    <div class="mat-elevation-z2 p-4">
+      <h2>Current Week</h2>
+      <div class="container  d-flex justify-content-around">
+        <div
+          *ngFor="let day of currentWeek"
+          class="d-flex flex-column align-items-center border-light pt-2"
+        >
+          <h3>{{ day.day }}</h3>
 
-        <div *ngFor="let shift of shiftEntities[day.key]">
-          <div>
-            {{ getTime(shift.start) }}
+          <div *ngFor="let shift of shiftEntities[day.key]">
+            <div>
+              {{ format(shift.start) }}
+            </div>
+            <div>
+              {{ format(shift.end) }}
+            </div>
+            <hr />
           </div>
-          <div>
-            {{ getTime(shift.end) }}
-          </div>
-          <hr />
         </div>
       </div>
     </div>
@@ -52,9 +55,7 @@ export class EmployeeWeeklyScheduleComponent implements OnChanges, OnInit {
     this.shiftEntities = fromUtils.reduceShifts(this.shifts);
   }
 
-  getTime(start: string): string {
-    let date = new Date(start);
-    // lifted from: https://stackoverflow.com/a/20430558/3638143
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  format(dateString: string): string {
+    return fromUtils.getSimpleTimeFormat(dateString);
   }
 }
