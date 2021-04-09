@@ -8,6 +8,8 @@ import * as fromEmployees from '../selectors/employees.selectors';
 import * as fromUtils from '../../utils';
 
 import { Shift } from '../../models/shift.model';
+import { from } from 'rxjs';
+import { distinct, map } from 'rxjs/operators';
 
 export const getShiftState = createSelector(
   fromFeature.getSchedulingState,
@@ -35,21 +37,33 @@ export const getAllShiftsForDay = () =>
   createSelector(
     fromEmployees.getEmployeesEntities,
     getAllShifts,
-    (employeeEntities, allShift, props: { date: Date }) => {
+    (employeeEntities, allShifts, props: { date: Date }) => {
+      // I want to revisit this and find a nice functional way to group all these
+
       let dateKey = props.date.toISOString().slice(0, 10);
 
-      let keyShiftArray = fromUtils.createKeyShiftsArray(allShift);
+      let keyShiftArray = fromUtils.createKeyShiftsArray(allShifts);
 
-      let filtered = keyShiftArray
+      let daysShifts = keyShiftArray
         .filter((keyShift) => keyShift.key == dateKey)
         .map((keyShift) => keyShift.shift);
 
-      let matched = filtered.map((shift) => {
+      let allIds = daysShifts.map((f) => f.employeeId);
+      let uniqueIds = allIds.filter((id, index) => {
+        return allIds.indexOf(id) !== index;
+      });
+      console.log(uniqueIds);
+
+      let y = uniqueIds.map((id) => {
+        let employee = employeeEntities[id];
+        let theirShifts = daysShifts.filter((f) => f.employeeId == id);
         return {
-          employee: employeeEntities[shift.employeeId],
-          shift,
+          employee,
+          theirShifts,
         };
       });
+
+      return y;
     }
   );
 

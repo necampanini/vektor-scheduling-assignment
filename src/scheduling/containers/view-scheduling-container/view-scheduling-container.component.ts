@@ -50,12 +50,11 @@ import { FormBuilder, FormControl } from '@angular/forms';
 export class ViewSchedulingContainerComponent implements OnInit {
   employees$: Observable<Employee[]>;
   shifts$: Observable<Shift[]>;
+  test$: Observable<any[]>;
 
   form = this.fb.group({
     day: new FormControl(new Date()),
   });
-
-  test$: Observable<Shift[]>;
 
   constructor(
     private store: Store<fromStore.SchedulingState>,
