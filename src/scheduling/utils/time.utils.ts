@@ -55,6 +55,14 @@ export function getWeeklyView(week) {
   return week;
 }
 
+// for use in selector as well as function below
+export function createKeyShiftsArray(shifts: Shift[]) {
+  return shifts.map((shift) => ({
+    key: shift.start.toString().slice(0, 10),
+    shift: shift,
+  }));
+}
+
 export function reduceShifts(
   shifts: Shift[]
   // entities: { key: string; shifts: Shift[] }
@@ -63,12 +71,7 @@ export function reduceShifts(
   // https://edisondevadoss.medium.com/javascript-group-an-array-of-objects-by-key-afc85c35d07e
 
   // create key/value pairs of existing shifts using their dates as keys
-  let shiftsByDay = shifts.map((shift) => {
-    return {
-      key: shift.start.toString().slice(0, 10),
-      shift: shift,
-    };
-  });
+  let shiftsByDay = createKeyShiftsArray(shifts);
 
   // using above array, create object with key/value pairs to match in 'currentWeek'
   return shiftsByDay.reduce(

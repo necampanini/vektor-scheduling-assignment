@@ -8,9 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'landing-page-container',
   template: `
-    <div>
+    <div class="d-flex justify-content-between">
       <!--      apologies for the lack of styling expertise -->
-      <mat-card style="width: 25%; margin: auto">
+      <mat-card style="width: 50%;" class="m-4">
         <mat-card-header>
           <h2>Employees</h2>
         </mat-card-header>
@@ -18,6 +18,16 @@ import { ActivatedRoute } from '@angular/router';
         <mat-card-actions>
           <button mat-button (click)="routeTo('employees/new')">Create</button>
           <button mat-button (click)="routeTo('employees')">Manage</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card style="width: 50%;" class="m-4">
+        <mat-card-header>
+          <h2>Scheduling</h2>
+        </mat-card-header>
+        <mat-card-content> </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="routeTo('by-day')">By Day</button>
         </mat-card-actions>
       </mat-card>
     </div>
