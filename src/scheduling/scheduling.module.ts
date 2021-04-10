@@ -44,7 +44,11 @@ export const SchedulingRoutes: Routes = [
   },
   {
     path: 'by-day',
-    canActivate: [fromGuards.EmployeesGuard, fromGuards.ShiftsGuard],
+    canActivate: [
+      fromGuards.EmployeesGuard,
+      fromGuards.ShiftsGuard,
+      fromGuards.SelectedDateGuard,
+    ],
     component: fromContainers.ViewSchedulingContainerComponent,
   },
 ];

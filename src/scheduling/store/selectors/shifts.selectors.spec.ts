@@ -3,7 +3,6 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-
 import { TestBed } from '@angular/core/testing';
 
 import * as fromRoot from '../../../app/store';
@@ -12,9 +11,9 @@ import * as fromActions from '../actions/index';
 import * as fromSelectors from '../selectors/shifts.selectors';
 
 import { Shift } from '../../models/shift.model';
+import { ShiftsState } from '../reducers/shifts.reducer';
 
-class MockComponent {
-}
+class MockComponent {}
 
 describe('Shifts Selectors', () => {
   let store: Store<fromReducers.SchedulingState>;
@@ -23,22 +22,22 @@ describe('Shifts Selectors', () => {
   const employee1: Shift = {
     id: 'c47df9eb-354e-4add-a3e8-934ceda4b251',
     employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-    start: 1617906949704,
-    end: 1617906949706,
+    start: new Date('01 Mar 2021 00:00:00 GMT'),
+    end: new Date('01 Mar 2021 06:00:00 GMT'),
   };
 
   const employee2: Shift = {
     id: 'beaa9255-f7b4-45f3-bc0d-7d19feed0247',
     employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-    start: 1617906969704,
-    end: 1617916949704
+    start: new Date('01 Mar 2021 00:00:00 GMT'),
+    end: new Date('01 Mar 2021 06:00:00 GMT'),
   };
 
   const employee3: Shift = {
     id: '66d41c92-734b-4624-8057-31b73230966f',
     employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-    start: 1617906949704,
-    end: 1617926949704
+    start: new Date('01 Mar 2021 00:00:00 GMT'),
+    end: new Date('01 Mar 2021 06:00:00 GMT'),
   };
 
   const shifts: Shift[] = [employee1, employee2, employee3];
@@ -46,7 +45,7 @@ describe('Shifts Selectors', () => {
   const entities = {
     'c47df9eb-354e-4add-a3e8-934ceda4b251': shifts[0],
     'beaa9255-f7b4-45f3-bc0d-7d19feed0247': shifts[1],
-    '66d41c92-734b-4624-8057-31b73230966f': shifts[2]
+    '66d41c92-734b-4624-8057-31b73230966f': shifts[2],
   };
 
   beforeEach(() => {
@@ -54,17 +53,18 @@ describe('Shifts Selectors', () => {
       imports: [
         RouterTestingModule.withRoutes([
           {
-            path: 'shift/:shiftId', component: MockComponent
-          }
+            path: 'shift/:shiftId',
+            component: MockComponent,
+          },
         ]),
         StoreModule.forRoot({
           ...fromRoot.reducers,
-          scheduling: combineReducers(fromReducers.reducers)
+          scheduling: combineReducers(fromReducers.reducers),
         }),
         StoreRouterConnectingModule.forRoot({
-          stateKey: 'router'
-        })
-      ]
+          stateKey: 'router',
+        }),
+      ],
     });
 
     // TODO: .get is deprecated, find latest best practice for testing Store
@@ -78,12 +78,12 @@ describe('Shifts Selectors', () => {
 
       store
         .select(fromSelectors.getShiftState)
-        .subscribe(value => (result = value));
+        .subscribe((value) => (result = value));
 
       expect(result).toEqual({
         entities: {},
         loaded: false,
-        loading: false
+        loading: false,
       });
 
       store.dispatch(new fromActions.LoadShiftsSuccess(shifts));
@@ -91,7 +91,7 @@ describe('Shifts Selectors', () => {
       expect(result).toEqual({
         entities,
         loaded: true,
-        loading: false
+        loading: false,
       });
     });
   });
@@ -102,7 +102,7 @@ describe('Shifts Selectors', () => {
 
       store
         .select(fromSelectors.getShiftsEntities)
-        .subscribe(value => (result = value));
+        .subscribe((value) => (result = value));
 
       expect(result).toEqual({});
 
@@ -121,18 +121,19 @@ describe('Shifts Selectors', () => {
         state: {
           url: 'shift/c47df9eb-354e-4add-a3e8-934ceda4b251',
           params: { shiftId: 'c47df9eb-354e-4add-a3e8-934ceda4b251' },
-          queryParams: {}
-        }
+          queryParams: {},
+        },
       };
 
       store
         .select(fromSelectors.getShiftsEntities)
-        .subscribe(value => (result = value));
+        .subscribe((value) => (result = value));
 
       store.dispatch(new fromActions.LoadShiftsSuccess(shifts));
 
-      expect(fromSelectors.getSelectedShift.projector(result, routerState))
-        .toBe(entities['c47df9eb-354e-4add-a3e8-934ceda4b251']);
+      expect(
+        fromSelectors.getSelectedShift.projector(result, routerState)
+      ).toBe(entities['c47df9eb-354e-4add-a3e8-934ceda4b251']);
     });
   });
 
@@ -142,7 +143,7 @@ describe('Shifts Selectors', () => {
 
       store
         .select(fromSelectors.getAllShifts)
-        .subscribe(value => (result = value));
+        .subscribe((value) => (result = value));
 
       expect(result).toEqual([]);
 
@@ -158,7 +159,7 @@ describe('Shifts Selectors', () => {
 
       store
         .select(fromSelectors.getShiftsLoaded)
-        .subscribe(value => (result = value));
+        .subscribe((value) => (result = value));
 
       expect(result).toEqual(false);
 
@@ -174,7 +175,7 @@ describe('Shifts Selectors', () => {
 
       store
         .select(fromSelectors.getShiftsLoading)
-        .subscribe(value => (result = value));
+        .subscribe((value) => (result = value));
 
       expect(result).toEqual(false);
 

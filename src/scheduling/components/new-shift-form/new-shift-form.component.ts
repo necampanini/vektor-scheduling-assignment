@@ -46,39 +46,45 @@ export class NewShiftFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges.subscribe((next) => {
-      const {
-        day,
-        startHour,
-        startMinute,
-        startPeriod,
-        endHour,
-        endMinute,
-        endPeriod,
-      } = next;
-
-      const start = this.setShiftDateTime(
-        day,
-        startHour,
-        startMinute,
-        startPeriod
-      );
-      this.shiftStart = new Date(start);
-
-      const end = this.setShiftDateTime(day, endHour, endMinute, endPeriod);
-      this.shiftEnd = new Date(end);
-    });
+    this.form.valueChanges.subscribe(this.testableSetDateTime);
   }
+
+  testableSetDateTime = (form) => {
+    const {
+      day,
+      startHour,
+      startMinute,
+      startPeriod,
+      endHour,
+      endMinute,
+      endPeriod,
+    } = form;
+
+    const start = this.setShiftDateTime(
+      day,
+      startHour,
+      startMinute,
+      startPeriod
+    );
+    this.shiftStart = new Date(start);
+
+    const end = this.setShiftDateTime(day, endHour, endMinute, endPeriod);
+    this.shiftEnd = new Date(end);
+  };
 
   setShiftDateTime = (day, hour, minute, period) => {
     const date = new Date(day);
     date.setHours(0, 0, 0, 0);
 
-    if (hour == 12 && period == 'AM') {
-      date.setHours(0);
+    let setHour;
+    if (hour == 12) {
+      setHour = period == 'AM' ? 0 : 12;
     } else {
-      date.setHours(period == 'AM' ? hour : hour + 12);
+      setHour = period == 'AM' ? hour : hour + 12;
     }
+
+    date.setHours(setHour);
+
     date.setMinutes(minute);
     return date;
   };

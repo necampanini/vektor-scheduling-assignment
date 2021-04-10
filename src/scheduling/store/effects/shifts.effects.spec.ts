@@ -31,17 +31,17 @@ describe('ShiftsEffects', () => {
   let effects: fromEffects.ShiftsEffects;
 
   const shift1: Shift = {
-    'id': 'c96627cd-be56-4a76-aa0b-d6f9e664d531',
-    'employeeId': '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-    'start': 1617828256683,
-    'end': 1617828288734
+    id: 'c96627cd-be56-4a76-aa0b-d6f9e664d531',
+    employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
+    start: new Date('01 Mar 2021 00:00:00 GMT'),
+    end: new Date('01 Mar 2021 06:00:00 GMT'),
   };
 
   const shift2: Shift = {
-    'id': '8f7257a6-e9f5-47e4-a5d5-68ae0bfa5f81',
-    'employeeId': '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
-    'start': 1617818286683,
-    'end': 1617838298734
+    id: '8f7257a6-e9f5-47e4-a5d5-68ae0bfa5f81',
+    employeeId: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
+    start: new Date('02 Mar 2021 06:00:00 GMT'),
+    end: new Date('02 Mar 2021 09:00:00 GMT'),
   };
 
   const shifts: Shift[] = [shift1, shift2];
@@ -52,8 +52,8 @@ describe('ShiftsEffects', () => {
       providers: [
         ShiftsService,
         fromEffects.ShiftsEffects,
-        { provide: Actions, useFactory: getActions }
-      ]
+        { provide: Actions, useFactory: getActions },
+      ],
     });
 
     actions$ = TestBed.get(Actions);

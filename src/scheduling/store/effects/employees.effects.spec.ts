@@ -34,14 +34,14 @@ describe('EmployeesEffects', () => {
     id: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
     firstName: 'Johnny',
     lastName: 'Tester',
-    employeeNumber: 8472
+    employeeNumber: '8472',
   };
 
   const employee2: Employee = {
     id: '73b7024f-962f-4fe8-962f-f61d1afbb9bd',
     firstName: 'Doom',
     lastName: 'Guy',
-    employeeNumber: 8471
+    employeeNumber: '8471',
   };
 
   const employees: Employee[] = [employee1, employee2];
@@ -52,8 +52,8 @@ describe('EmployeesEffects', () => {
       providers: [
         EmployeesService,
         fromEffects.EmployeesEffects,
-        { provide: Actions, useFactory: getActions }
-      ]
+        { provide: Actions, useFactory: getActions },
+      ],
     });
 
     actions$ = TestBed.get(Actions);

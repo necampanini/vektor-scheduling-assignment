@@ -34,8 +34,18 @@ describe('Employee Reducer', () => {
   describe('LOAD_EMPLOYEES_SUCCESS action', () => {
     it('should map an array to entities', () => {
       const employees: Employee[] = [
-        { id: '788642c4-22c3-4931-b8bb-793368e01ac5', firstName: 'JohnTest', lastName: 'TestJohn', employeeNumber: 2384 },
-        { id: 'a55feadb-24ea-4c99-bae1-46341437d2b9', firstName: 'JimmyTest', lastName: 'TestJimmy', employeeNumber: 5823 },
+        {
+          id: '788642c4-22c3-4931-b8bb-793368e01ac5',
+          firstName: 'JohnTest',
+          lastName: 'TestJohn',
+          employeeNumber: '2384',
+        },
+        {
+          id: 'a55feadb-24ea-4c99-bae1-46341437d2b9',
+          firstName: 'JimmyTest',
+          lastName: 'TestJimmy',
+          employeeNumber: '5823',
+        },
       ];
 
       const entities = {
@@ -80,21 +90,21 @@ describe('Employee Reducer', () => {
           id: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
           firstName: 'Johnny',
           lastName: 'Tester',
-          employeeNumber: 8472
+          employeeNumber: '8472',
         },
         {
           id: '5ef131c4-d004-4732-b313-a2eb84dac7cf',
           firstName: 'Noah',
           lastName: 'Tested',
-          employeeNumber: 8471
-        }
+          employeeNumber: '8471',
+        },
       ];
 
       const newEmployee: Employee = {
         id: 'e062aa2d-d5de-48e8-b575-b01f52136899',
         firstName: 'Daft',
         lastName: 'Punk',
-        employeeNumber: 8484
+        employeeNumber: '8484',
       };
 
       const entities = fromUtils.mapToEntity(employees, {});
@@ -107,7 +117,7 @@ describe('Employee Reducer', () => {
       expect(Object.keys(state.entities).length).toEqual(3);
       expect(state.entities).toEqual({
         ...entities,
-        'e062aa2d-d5de-48e8-b575-b01f52136899': newEmployee
+        'e062aa2d-d5de-48e8-b575-b01f52136899': newEmployee,
       });
     });
   });
@@ -120,22 +130,22 @@ describe('Employee Reducer', () => {
           id: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
           firstName: 'Johnny',
           lastName: 'Tester',
-          employeeNumber: 8472
+          employeeNumber: '8472',
         },
         {
           id: '5ef131c4-d004-4732-b313-a2eb84dac7cf',
           firstName: 'Noah',
           lastName: 'Tested',
-          employeeNumber: 8471
-        }
+          employeeNumber: '8471',
+        },
       ];
 
       const updatedEmployee = {
         id: '5ef131c4-d004-4732-b313-a2eb84dac7cf',
         firstName: 'Noah',
         lastName: 'NewEmployeeNumber',
-        employeeNumber: 6681
-      };
+        employeeNumber: '6681',
+      } as Employee;
 
       const entities = fromUtils.mapToEntity(employees, {});
 
@@ -147,7 +157,7 @@ describe('Employee Reducer', () => {
       expect(Object.keys(state.entities).length).toEqual(2);
       expect(state.entities).toEqual({
         ...entities,
-        '5ef131c4-d004-4732-b313-a2eb84dac7cf': updatedEmployee
+        '5ef131c4-d004-4732-b313-a2eb84dac7cf': updatedEmployee,
       });
     });
   });
@@ -160,14 +170,14 @@ describe('Employee Reducer', () => {
           id: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
           firstName: 'Johnny',
           lastName: 'Tester',
-          employeeNumber: 8472
+          employeeNumber: '8472',
         },
         {
           id: '5ef131c4-d004-4732-b313-a2eb84dac7cf',
           firstName: 'Noah',
           lastName: 'Tested',
-          employeeNumber: 8471
-        }
+          employeeNumber: '8471',
+        },
       ];
 
       const entities = fromUtils.mapToEntity(employees, {});
@@ -179,7 +189,7 @@ describe('Employee Reducer', () => {
 
       expect(Object.keys(state.entities).length).toEqual(1);
       expect(state.entities).toEqual({
-        '5ef131c4-d004-4732-b313-a2eb84dac7cf': employees[1]
+        '5ef131c4-d004-4732-b313-a2eb84dac7cf': employees[1],
       });
     });
   });
@@ -194,14 +204,14 @@ describe('EmployeesReducer Selectors', () => {
           id: '8ae2a281-1555-43fa-bb11-945b51cfdbb5',
           firstName: 'Johnny',
           lastName: 'Tester',
-          employeeNumber: 8472
+          employeeNumber: '8472',
         },
         '5ef131c4-d004-4732-b313-a2eb84dac7cf': {
           id: '5ef131c4-d004-4732-b313-a2eb84dac7cf',
           firstName: 'Noah',
           lastName: 'Tested',
-          employeeNumber: 8471
-        }
+          employeeNumber: '8471',
+        },
       };
 
       const { initialState } = fromEmployees;

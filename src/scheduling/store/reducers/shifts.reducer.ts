@@ -11,7 +11,6 @@ export const initialState: ShiftsState = {
   entities: {},
   loading: false,
   loaded: false,
-  selectedDate: new Date(),
 };
 
 export function reducer(
