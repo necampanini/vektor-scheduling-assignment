@@ -56,18 +56,32 @@ export class NewShiftFormComponent implements OnInit {
         endMinute,
         endPeriod,
       } = next;
-      // more possible abstraction possibilities - refraining for times sake
-      const start = day;
-      start.setHours(startPeriod == 'AM' ? startHour : startHour + 12);
-      start.setMinutes(startMinute);
+
+      const start = this.setShiftDateTime(
+        day,
+        startHour,
+        startMinute,
+        startPeriod
+      );
       this.shiftStart = new Date(start);
 
-      const end = day;
-      end.setHours(endPeriod == 'AM' ? endHour : endHour + 12);
-      end.setMinutes(endMinute);
+      const end = this.setShiftDateTime(day, endHour, endMinute, endPeriod);
       this.shiftEnd = new Date(end);
     });
   }
+
+  setShiftDateTime = (day, hour, minute, period) => {
+    const date = new Date(day);
+    date.setHours(0, 0, 0, 0);
+
+    if (hour == 12 && period == 'AM') {
+      date.setHours(0);
+    } else {
+      date.setHours(period == 'AM' ? hour : hour + 12);
+    }
+    date.setMinutes(minute);
+    return date;
+  };
 
   onSubmit = () => {
     this.addShift.emit({
