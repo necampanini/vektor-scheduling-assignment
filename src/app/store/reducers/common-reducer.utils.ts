@@ -15,7 +15,7 @@ export const mapToEntity = <T extends HasId>(
     (entitiesObject: Entity<T>, entity: T) => {
       return {
         ...entitiesObject,
-        [entity.id]: entity
+        [entity.id]: entity,
       };
     },
     { ...stateEntitiesObject }
