@@ -24,10 +24,10 @@ import * as fromUtils from '../../utils';
 
           <div *ngFor="let shift of shiftEntities[day.key]">
             <div>
-              {{ format(shift.start) }}
+              {{ format(shift.start.toString()) }}
             </div>
             <div>
-              {{ format(shift.end) }}
+              {{ format(shift.end.toString()) }}
             </div>
             <hr />
           </div>
@@ -42,7 +42,7 @@ export class EmployeeWeeklyScheduleComponent implements OnChanges, OnInit {
   shifts: Shift[];
 
   currentWeek: { key: string; day: string }[] = [];
-  shiftEntities: { key: string; shifts: Shift[] };
+  shiftEntities: { [key: string]: Shift[] };
 
   constructor() {}
 
@@ -53,6 +53,7 @@ export class EmployeeWeeklyScheduleComponent implements OnChanges, OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     this.shiftEntities = fromUtils.reduceShifts(this.shifts);
+    console.log(this.shiftEntities);
   }
 
   format(dateString: string): string {

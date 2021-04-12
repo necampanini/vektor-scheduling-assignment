@@ -66,7 +66,7 @@ export function createKeyShiftsArray(shifts: Shift[]) {
 export function reduceShifts(
   shifts: Shift[]
   // entities: { key: string; shifts: Shift[] }
-): { key: string; shifts: Shift[] } {
+): { [key: string]: Shift[] } {
   // reducer function to return key/array pairs from:
   // https://edisondevadoss.medium.com/javascript-group-an-array-of-objects-by-key-afc85c35d07e
 
@@ -75,14 +75,14 @@ export function reduceShifts(
 
   // using above array, create object with key/value pairs to match in 'currentWeek'
   return shiftsByDay.reduce(
-    (entity: { key: string; shifts: Shift[] }, shiftByKey) => {
-      entity[shiftByKey.key] = [
-        ...(entity[shiftByKey.key] || []),
+    (entitiesObject: { [key: string]: Shift[] }, shiftByKey) => {
+      entitiesObject[shiftByKey.key] = [
+        ...(entitiesObject[shiftByKey.key] || []),
         shiftByKey.shift,
       ];
-      return entity;
+      return entitiesObject;
     },
-    { key: null, shifts: [] } // workaround - doesn't affect functionality but adds unnecessary keys
+    {}
   );
 }
 

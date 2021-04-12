@@ -9,16 +9,16 @@ export interface Entity<T> {
 // helper function, takes array from 'backend' and flattens to object
 export const mapToEntity = <T extends HasId>(
   payload: T[],
-  stateEntities: Entity<T>
+  stateEntitiesObject: Entity<T>
 ): Entity<T> =>
   payload.reduce(
-    (entities: Entity<T>, entity: T) => {
+    (entitiesObject: Entity<T>, entity: T) => {
       return {
-        ...entities,
+        ...entitiesObject,
         [entity.id]: entity
       };
     },
-    { ...stateEntities }
+    { ...stateEntitiesObject }
   );
 
 export interface BaseEntityInterface<T> {
